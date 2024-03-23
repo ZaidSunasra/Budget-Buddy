@@ -1,10 +1,8 @@
-import { DashBoard } from "./pages/DashBoard"
-
-function App() {
+ function App() {
 
   return (
     <>
-    <DashBoard />
+    <h1> Hello World</h1>
     </>
   )
 }
