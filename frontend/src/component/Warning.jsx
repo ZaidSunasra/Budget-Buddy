@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 export function Warning({ text, linktext, to }) {
-    return <div className="flex text-center p-1">
+    return <div className="flex  p-1 w-full justify-center">
         <div className="font-mono text-sm font-normal p-1">
             {text}
         </div>

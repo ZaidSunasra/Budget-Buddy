@@ -4,8 +4,8 @@ import { Input } from "./Input";
 import { Warning } from "./Warning";
 
 export function SignUp(){
-    return <div className="h-screen bg-blue-600 flex justify-center items-center">
-        <div className="flex flex-col p-2 bg-white rounded-md border-2 border-black">
+    return <div className="h-screen flex justify-center items-center">
+        <div className="flex flex-col p-2 bg-white rounded-md w-2/5 border-2 shadow-lg">
             <Heading heading={"Create Account"} />
             <Input label={"Firstname"} placeholder={"Enter your firstname"} />
             <Input label={"Lastname"} placeholder={"Enter your lastname"} />
