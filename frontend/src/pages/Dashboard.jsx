@@ -1,4 +1,5 @@
 import { Navbar } from "../component/Navbar";
+import { TableCell } from "../component/TableCell";
 
 export function Dashboard() {
 
@@ -19,13 +20,22 @@ export function Dashboard() {
             </div>
         </div>
         <div className="flex flex-col lg:flex-row justify-between w-full p-7 mb-3">
-            <input type="text" className="w-4/5 p-2 border-2 shadow-lg font-mono text-xl rounded-md border-black" placeholder="Search expense" />
-            <button className="bg-green-600 px-6 py-2 font-mono font-extrabold rounded-md shadow-lg flex items-center gap-2">
+            <input type="text" className="w-4/5 p-2 border-2 shadow-lg font-mono text-xl font-extrabold rounded-md border-black" placeholder="Search expense" />
+            <button className="bg-green-600 px-6 py-2 text-xl font-mono font-extrabold rounded-md shadow-lg flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
                 Add transaction
             </button>
+        </div>
+        <div className="w-full p-7 grid grid-cols-12">
+            <TableCell data={"Id"} width={1}/>
+            <TableCell data={"Date"} width={1}/>
+            <TableCell data={"Title"} width={3}/>
+            <TableCell data={"Amount"} width={2}/>
+            <TableCell data={"Category"} width={2}/>
+            <TableCell data={"Type"} width={1}/>
+            <TableCell data={"Action"} width={2}/>
         </div>
     </div>
 }
