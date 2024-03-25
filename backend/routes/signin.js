@@ -18,38 +18,40 @@ router.post("/", async (req, res) => {
     const { email, password } = req.body;
 
     const { success } = signinBody.safeParse(req.body);
-    if(!success){
-        return res.status(404).json({
-            msg: "Invalid input"
+
+    if (!success) {
+        return res.json({
+            msg: "Invalid input",
+            success
         });
     }
 
-    try{
+    try {
 
         const user = await db.query("SELECT * FROM users WHERE email = $1", [email]);
-        if(user.rowCount == 0){
-            return res.status(404).json({
+        if (user.rowCount == 0) {
+            return res.json({
                 msg: "User not found."
             })
         }
 
-        const passwordMatch = await bcrypt.compare( password, user.rows[0].password);
+        const passwordMatch = await bcrypt.compare(password, user.rows[0].password);
 
-        if(!passwordMatch){
-            return res.status(404).json({
+        if (!passwordMatch) {
+            return res.json({
                 msg: "Incorrect Password"
             })
         }
 
         const token = jwt.sign({ email }, process.env.JWT_SECRET);
 
-        return res.status(200).json({
-            msg: "Login successfull\n",
+        return res.json({
+            msg: "Login successfull",
             token: token
         });
 
-    } catch(error){
-        return res.status(404).json({
+    } catch (error) {
+        return res.json({
             error: "Error logging in\n" + error,
         });
     }
