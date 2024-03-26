@@ -23,7 +23,10 @@ async function updateFinalBalance(id) {
     }
 
     const updatedBalance = totalIncome - totalExpense;
-    return updatedBalance;
+
+    await db.query("UPDATE users SET balance = $1 WHERE user_id = $2", [updatedBalance, id]);
+    
+
 }
 
 router.get("/get", authMiddleware, getIdMiddleware, async (req, res) => {
@@ -32,6 +35,18 @@ router.get("/get", authMiddleware, getIdMiddleware, async (req, res) => {
 
     res.json({
         transactions
+    })
+})
+
+
+router.get("/get/:id", authMiddleware, getIdMiddleware, async (req, res) => {
+
+    const id = req.params.id;
+
+    const transaction = await db.query("SELECT transaction_id, date, title, description, category, amount, transaction_type FROM transactions WHERE transaction_id = $1", [id]);
+
+    res.json({
+        transaction
     })
 })
 
@@ -61,9 +76,7 @@ router.post("/add", authMiddleware, getIdMiddleware, async (req, res) => {
 
     await db.query("INSERT INTO transactions(user_id, title, description, amount, category, transaction_type, date) values($1, $2, $3, $4, $5, $6, $7)", [res.locals.id, req.body.title, req.body.description, amount, category, req.body.type, req.body.date]);
 
-    const finalBalance = await updateFinalBalance(res.locals.id);
-    
-    await db.query("UPDATE users SET balance = $1 WHERE user_id = $2", [finalBalance, res.locals.id]);
+    await updateFinalBalance(res.locals.id);
 
     res.json({
         msg: "Transaction added successfully"
@@ -71,14 +84,13 @@ router.post("/add", authMiddleware, getIdMiddleware, async (req, res) => {
 
     } catch (error) {
         return res.json({
-            error
+            msg: error
         })
     }
 
 });
 
 const editTransactionBody = zod.object({
-    transactionId: zod.string(),
     title: zod.string().optional(),
     description: zod.string().optional(),
     category: zod.string().optional(),
@@ -87,9 +99,10 @@ const editTransactionBody = zod.object({
     amount: zod.number().optional()
 });
 
-router.patch("/edit", authMiddleware, getIdMiddleware, async (req, res) => {
+router.patch("/edit/:id", authMiddleware, getIdMiddleware, async (req, res) => {
 
     const amount = parseFloat(req.body.amount);
+    const id = req.params.id;
 
     const { success } = editTransactionBody.safeParse({ ...req.body, amount });
 
@@ -97,13 +110,12 @@ router.patch("/edit", authMiddleware, getIdMiddleware, async (req, res) => {
         return res.json({
             msg: "Invalid data"
         })
+        
     }
 
-    await db.query("UPDATE transactions SET title=$1, description=$2, amount=$3, category=$4, transaction_type=$5, date=$6 WHERE transaction_id=$7", [req.body.title, req.body.description, amount, req.body.category, req.body.type, req.body.date, req.body.transactionId]);
+    await db.query("UPDATE transactions SET title=$1, description=$2, amount=$3, category=$4, transaction_type=$5, date=$6 WHERE transaction_id=$7", [req.body.title, req.body.description, amount, req.body.category, req.body.type, req.body.date, id]);
 
-    const finalBalance = await updateFinalBalance(res.locals.id);
-
-    await db.query("UPDATE users SET balance = $1 WHERE user_id = $2", [finalBalance, res.locals.id]);
+    await updateFinalBalance(res.locals.id);
 
     res.json({
         msg: "Transaction edited successfully"
@@ -127,9 +139,7 @@ router.delete("/delete", authMiddleware, getIdMiddleware, async (req, res) => {
 
     await db.query("DELETE FROM transactions WHERE transaction_id = $1", [req.body.transactionId]);
 
-    const finalBalance = await updateFinalBalance(res.locals.id);
-
-    await db.query("UPDATE users SET balance = $1 WHERE user_id = $2", [finalBalance, res.locals.id]);
+    await updateFinalBalance(res.locals.id);
 
     res.json({
         msg: "Transaction deleted successfully"
