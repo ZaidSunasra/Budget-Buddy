@@ -5,7 +5,6 @@ import { Input } from "./Input"
 import { Warning } from "./Warning"
 import axios from "axios";
 import { useNavigate } from "react-router-dom"
-import { Alert } from "./Alert"
 
 export function Login() {
 
@@ -23,8 +22,6 @@ export function Login() {
                 setPassword(e.target.value);
             }} />
             <Button text={"Login"} onClick={async () => {
-                console.log(email, password);
-                console.log(typeof (email), typeof (password));
                 const response = await axios.post("http://localhost:3000/signin", {
                     email, password
                 });
@@ -36,7 +33,10 @@ export function Login() {
                     alert(response.data.msg)
                 }
             }} />
+            <div className="p-7">
             <Warning text={"Dont have an account?"} linktext={"Sign Up"} to={"/signup"} />
+            </div>
+            
         </div>
     </div>
 }

@@ -6,7 +6,7 @@ export function TableCell({ data, width}) {
         3: "col-span-3"
     }
 
-    return <div className={`bg-blue-600 p-4 font-mono text-xl font-bold flex justify-center ${col[width]} border-2 border-black`}>
+    return <div className={`bg-blue-600 p-4 font-mono text-xl font-bold text-center ${col[width]} border-2 border-black`}>
         {data}
     </div>
 }
