@@ -79,6 +79,7 @@ export function EditTransaction() {
                 <select defaultValue={type} name="transaction_type" id="transaction_type" className="w-full px-2 py-1 border-2 rounded-md" onChange={e => {
                     setType(e.target.value);
                 }}>
+                    <option value="">--SELECT TYPE--</option>
                     <option value="expense">expense</option>
                     <option value="income">income</option>
                 </select>
@@ -92,8 +93,8 @@ export function EditTransaction() {
                             authorization: "Bearer " + localStorage.getItem("Token")
                         }
                     });
-                console.log(response.data.msg);
                 if (response.data.msg == "Transaction edited successfully") {
+                    alert(response.data.msg);
                     navigate("/dashboard");
                 }
                 else {

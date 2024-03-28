@@ -24,7 +24,7 @@ export function Dashboard() {
             setTransaction(response.data.transactions.rows);
         }
         getAllTransactions();
-    }, []);
+    }, [transaction]);
 
     useEffect(() => {
         async function getUserDetails(){
@@ -50,7 +50,7 @@ export function Dashboard() {
             setBalance(response.data.balance);
         }
         getIncomeDetails();
-    }, []);
+    }, [transaction]);
 
 
     return <div className="box-border">
@@ -64,7 +64,7 @@ export function Dashboard() {
             </div>
         </div>
         <div className="flex flex-col items-center gap-4 w-full py-7 px-2 lg:flex-row lg:justify-around ">
-            <input type="text" className="w-full p-2 border-2 shadow-lg font-mono text-xl font-extrabold rounded-md border-black lg:w-3/4" placeholder="Search expense" />
+            <input type="text" className="w-full p-2 border-2 shadow-lg font-mono text-xl font-extrabold rounded-md border-black lg:w-3/4" placeholder="Search expense"/>
             <button className="w-full flex items-center justify-center bg-yellow-300 px-6 py-2 text-xl font-mono font-extrabold rounded-md shadow-lg gap-2 lg:w-1/4" 
             onClick={ () => {
                 navigate("/addTransaction");
