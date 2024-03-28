@@ -123,21 +123,11 @@ router.patch("/edit/:id", authMiddleware, getIdMiddleware, async (req, res) => {
 
 });
 
-const deleteTransactionBody = zod.object({
-    transactionId: zod.string()
-})
-
 router.delete("/delete", authMiddleware, getIdMiddleware, async (req, res) => {
 
-    const { success } = deleteTransactionBody.safeParse(req.body);
+    const id = req.query.id
 
-    if (!success) {
-        return res.json({
-            msg: "Invalid data"
-        })
-    }
-
-    await db.query("DELETE FROM transactions WHERE transaction_id = $1", [req.body.transactionId]);
+    await db.query("DELETE FROM transactions WHERE transaction_id = $1", [id]);
 
     await updateFinalBalance(res.locals.id);
 
@@ -146,5 +136,19 @@ router.delete("/delete", authMiddleware, getIdMiddleware, async (req, res) => {
     })
 
 });
+
+
+// router.get("/filter", authMiddleware, getIdMiddleware, async (req, res) => {
+
+//     const filterQuery = req.query.filter;
+
+//     const filter = await db.query("SELECT * FROM transactions WHERE user_id = $1 AND title LIKE $2 OR description LIKE $3", [res.locals.id, "%"+filterQuery+"%", "%"+filterQuery+"%"]);
+
+//     res.json({
+//         filter
+//     })
+
+// });
+
 
 export default router;
