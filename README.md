@@ -5,7 +5,7 @@ Budget Buddy includes:-
 - [x] User Login and Authentication
 - [x] Perform CRUD operations on Expense
 - [x] Responsive
-- [ ] PWA
+- [ ] PWA (Progressive Web App)
 - [ ] Visualize User Expenses by Category
 - [ ] Display User Expenses by Date
 - [ ] Budgeting for Users
