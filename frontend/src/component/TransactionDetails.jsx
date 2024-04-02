@@ -14,7 +14,7 @@ async () => {
         });
 }
 
-export function TransactionDetails({ data }) {
+export function TransactionDetails({ data, filter }) {
 
     const navigate = useNavigate();
     const id = data.transaction_id;
@@ -31,6 +31,7 @@ export function TransactionDetails({ data }) {
                         }
                     });
                     setIsConfirmation(false);
+                    filter("");
                 }} 
             />
         </div>

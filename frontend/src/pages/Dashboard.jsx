@@ -12,7 +12,22 @@ export function Dashboard() {
     const [name, setName] = useState("");
     const [expense, setExpense] = useState(0);
     const [income, setIncome] = useState(0);
+    const [filter, setFilter] = useState("");
+    const [displayTransaction, setDisplayTransaction] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        async function getSearchedTransaction(){
+            const response = await axios.get("http://localhost:3000/transaction/filter?filter=" + filter, {
+                headers:{
+                    authorization: "Bearer " + localStorage.getItem("Token")
+                }
+            });
+            setDisplayTransaction(response.data.filter.rows);
+            //console.log(displayTransaction)
+        }
+        getSearchedTransaction();
+    }, [filter]);
 
     useEffect(() => {
         async function getAllTransactions(){
@@ -64,7 +79,9 @@ export function Dashboard() {
             </div>
         </div>
         <div className="flex flex-col items-center gap-4 w-full py-7 px-2 lg:flex-row lg:justify-around ">
-            <input type="text" className="w-full p-2 border-2 shadow-lg font-mono text-xl font-extrabold rounded-md border-black lg:w-3/4" placeholder="Search expense"/>
+            <input type="text" className="w-full p-2 border-2 shadow-lg font-mono text-xl font-extrabold rounded-md border-black lg:w-3/4" placeholder="Search expense" onChange={ e => {
+                setFilter(e.target.value);
+            }}/>
             <button className="w-full flex items-center justify-center bg-yellow-300 px-6 py-2 text-xl font-mono font-extrabold rounded-md shadow-lg gap-2 lg:w-1/4" 
             onClick={ () => {
                 navigate("/addTransaction");
@@ -75,6 +92,7 @@ export function Dashboard() {
                 Add transaction
             </button>
         </div>
+        <div>
         <div className="w-full px-2 grid grid-cols-12">
             <TableCell key={"date"} data={"Date"} width={2} />
             <TableCell key={"title"} data={"Title"} width={3} />
@@ -83,8 +101,12 @@ export function Dashboard() {
             <TableCell key={"type"} data={"Type"} width={1} />
             <TableCell key={"action"} data={"Action"} width={2} />
         </div>
-        
-        { transaction.map(trans => <TransactionDetails data={trans} />)}
+        { filter ? (
+            displayTransaction.map(display => <TransactionDetails key={display.transaction_id} data={display} filter={setFilter}/>)
+        ) :(
+            transaction.map(trans => <TransactionDetails key={trans.transaction_id} data={trans} filter={setFilter}/>)
+        )}
+        </div>
     </div>
     
 }

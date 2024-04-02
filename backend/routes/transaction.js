@@ -1,5 +1,5 @@
 import express from 'express';
-import zod, { number } from 'zod';
+import zod from 'zod';
 import authMiddleware from '../middlewares/auth.js';
 import getIdMiddleware from '../middlewares/getId.js';
 import db from '../db.js';
@@ -31,19 +31,30 @@ async function updateFinalBalance(id) {
 
 router.get("/get", authMiddleware, getIdMiddleware, async (req, res) => {
 
-    const transactions = await db.query("SELECT transaction_id, date, title, description, category, amount, transaction_type FROM transactions WHERE user_id = $1", [res.locals.id]);
+    const transactions = await db.query("SELECT * FROM transactions WHERE user_id = $1", [res.locals.id]);
 
     res.json({
         transactions
     })
 })
 
+router.get("/filter", authMiddleware, getIdMiddleware, async (req, res) => {
+
+    const filterQuery = req.query.filter;
+
+    const filter = await db.query("SELECT * FROM transactions WHERE user_id = $1 AND title LIKE $2 OR description LIKE $3", [res.locals.id, "%"+filterQuery+"%", "%"+filterQuery+"%"]);
+
+    res.json({
+        filter
+    })
+
+});
 
 router.get("/get/:id", authMiddleware, getIdMiddleware, async (req, res) => {
 
     const id = req.params.id;
 
-    const transaction = await db.query("SELECT transaction_id, date, title, description, category, amount, transaction_type FROM transactions WHERE transaction_id = $1", [id]);
+    const transaction = await db.query("SELECT * FROM transactions WHERE transaction_id = $1", [id]);
 
     res.json({
         transaction
@@ -136,19 +147,5 @@ router.delete("/delete", authMiddleware, getIdMiddleware, async (req, res) => {
     })
 
 });
-
-
-// router.get("/filter", authMiddleware, getIdMiddleware, async (req, res) => {
-
-//     const filterQuery = req.query.filter;
-
-//     const filter = await db.query("SELECT * FROM transactions WHERE user_id = $1 AND title LIKE $2 OR description LIKE $3", [res.locals.id, "%"+filterQuery+"%", "%"+filterQuery+"%"]);
-
-//     res.json({
-//         filter
-//     })
-
-// });
-
 
 export default router;
