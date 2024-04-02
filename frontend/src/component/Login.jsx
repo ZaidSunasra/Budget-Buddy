@@ -12,7 +12,7 @@ export function Login() {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    return <div className="w-1/4">
+    return <div className="w-full md:w-3/5 lg:w-2/5 xl:w-1/4">
         <div className="flex flex-col p-2 bg-white rounded-md w-full border-2 shadow-lg">
             <Heading heading={"Login"} />
             <Input label={"Email"} placeholder={"Enter your email"} onChange={e => {

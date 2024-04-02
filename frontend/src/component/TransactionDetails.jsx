@@ -38,13 +38,13 @@ export function TransactionDetails({ data, filter }) {
 
     }
 
-    return <div className="w-full flex px-2">
-        <div className="p-1 text-center cursor-pointer w-1/6  font-mono font-bold flex justify-center items-center text-xl border-b-2 border-l-2 border-black"> {data.date.slice(0, 10)} </div>
-        <div className="p-1 text-center cursor-pointer w-1/4  font-mono font-bold flex justify-center items-center text-xl border-b-2 border-l-2 border-black"> {data.title + " \n " + data.description} </div>
-        <div className="p-1 text-center cursor-pointer w-1/6  font-mono font-bold flex justify-center items-center text-xl border-b-2 border-l-2 border-black"> {data.amount} </div>
-        <div className="p-1 text-center cursor-pointer w-1/6  font-mono font-bold flex justify-center items-center text-xl border-b-2 border-l-2 border-black"> {data.category} </div>
-        <div className="p-1 text-center cursor-pointer w-1/12 font-mono font-bold flex justify-center items-center text-xl border-b-2 border-l-2 border-black"> {data.transaction_type} </div>
-        <div className="p-1 text-center cursor-pointer w-1/6  font-mono font-bold flex justify-evenly items-center text-xl border-b-2 border-l-2 border-r-2 border-black py-2">
+    return <div className="px-2 flex justify-center">
+        <div className="p-1 text-center cursor-pointer min-w-32 w-32 lg:w-1/6  font-mono font-bold flex justify-center items-center text-xl border-2 border-black"> {data.date.slice(0, 10)} </div>
+        <div className="p-1 text-center cursor-pointer min-w-48 w-48 lg:w-1/4  font-mono font-bold flex justify-center items-center text-xl border-2 border-black"> {data.title + " \n " + data.description} </div>
+        <div className="p-1 text-center cursor-pointer min-w-36 w-36 lg:w-1/6  font-mono font-bold flex justify-center items-center text-xl border-2 border-black"> {data.amount} </div>
+        <div className="p-1 text-center cursor-pointer min-w-32 w-32 lg:w-1/6  font-mono font-bold flex justify-center items-center text-xl border-2 border-black"> {data.category} </div>
+        <div className="p-1 text-center cursor-pointer min-w-28 w-28 lg:w-1/12 font-mono font-bold flex justify-center items-center text-xl border-2 border-black"> {data.transaction_type} </div>
+        <div className="p-1 text-center cursor-pointer min-w-44 w-44 lg:w-1/6  font-mono font-bold flex justify-evenly items-center text-xl border-2 border-black py-2">
             <button className="bg-white flex justify-center items-center font-extrabold cursor-pointer p-4 rounded-md shadow-lg" onClick={() => {
                 navigate("/edit/" + data.transaction_id);
             }}>

@@ -15,8 +15,8 @@ export function AddTransaction() {
     const [type, setType] = useState('expense');
     const navigate = useNavigate();
 
-    return <div className=" h-screen flex items-center justify-center">
-        <div className="flex flex-col p-2 bg-white rounded-md shadow-lg border-2 w-2/5">
+    return <div className="h-screen flex items-center justify-center">
+        <div className="flex flex-col p-2 bg-white rounded-md shadow-lg border-2 w-full lg:w-1/2">
             <Heading heading={"Create Transaction"} />
             <Input placeholder={"Enter title"} label={"Title"} onChange={e => {
                 setTitle(e.target.value);

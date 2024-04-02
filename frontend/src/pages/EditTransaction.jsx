@@ -41,8 +41,8 @@ export function EditTransaction() {
 
     }, [id]);
 
-    return <div className=" h-screen flex items-center justify-center">
-        <div className="flex flex-col p-2 bg-white rounded-md shadow-lg border-2 w-2/5">
+    return <div className="h-screen flex items-center justify-center">
+        <div className="flex flex-col p-2 bg-white rounded-md shadow-lg border-2 w-full lg:w-1/2">
             <Heading heading={"Edit Transaction"} />
             <div className="flex flex-col px-2 py-1">
                 <div className="my-1 font-mono text-lg font-medium text-left"> Title </div>
