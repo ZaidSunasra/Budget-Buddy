@@ -4,6 +4,7 @@ import { Dashboard } from "./pages/Dashboard"
 import { AddTransaction } from "./pages/AddTransaction"
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { EditTransaction } from "./pages/EditTransaction"
+import { DisplayGraph } from "./pages/DisplayGraph"
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/addTransaction" element={<AddTransaction />} />
           <Route path="/edit/:id" element={<EditTransaction />} />
+          <Route path="/displayGraph" element={<DisplayGraph />} />
         </Routes>
       </BrowserRouter>
     </>

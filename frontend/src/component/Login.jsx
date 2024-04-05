@@ -33,7 +33,7 @@ export function Login() {
                     alert(response.data.msg)
                 }
             }} />
-            <div className="p-7">
+            <div>
             <Warning text={"Dont have an account?"} linktext={"Sign Up"} to={"/signup"} />
             </div>
             
