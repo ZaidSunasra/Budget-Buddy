@@ -97,15 +97,12 @@ export function DisplayGraph() {
         }
     }
 
-    console.log(tempBarIncome)
-    console.log(barIncome)
-
     return <div>
         <div className="w-full flex justify-center py-2">
             <h1 className="font-bold font-mono text-5xl text-blue-500">Analytics</h1>
         </div>
-        <div className="w-full flex justify-evenly items-center p-5">
-            <div className="bg-slate-200 flex flex-col justify-center shadow-lg rounded-lg w-full md:w-1/4 p-2">
+        <div className="w-full flex flex-col lg:flex-row justify-evenly items-center p-1">
+            <div className="bg-slate-200 flex flex-col justify-center shadow-lg rounded-lg w-full md:w-3/5 lg:w-1/4 p-2 mb-10">
                 <div>
                     <h1 className="font-bold text-3xl font-mono">Category Wise Expense</h1>
                 </div>
@@ -144,7 +141,7 @@ export function DisplayGraph() {
                     </tbody>
                 </table>
             </div>
-            <div className="bg-slate-200 flex flex-col justify-center items-center shadow-lg rounded-lg w-full md:w-3/5 p-2">
+            <div className="bg-slate-200 flex flex-col justify-center items-center shadow-lg rounded-lg w-full md:w-3/5 lg:w-3/5 p-2 mb-10">
                 <div>
                     <h1 className="font-bold text-3xl font-mono">Last 7 days</h1>
                 </div>

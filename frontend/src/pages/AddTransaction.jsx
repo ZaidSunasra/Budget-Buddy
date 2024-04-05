@@ -18,29 +18,29 @@ export function AddTransaction() {
     return <div className="h-screen flex items-center justify-center">
         <div className="flex flex-col p-2 bg-white rounded-md shadow-lg border-2 w-full lg:w-1/2">
             <Heading heading={"Create Transaction"} />
-            <Input placeholder={"Enter title"} label={"Title"} onChange={e => {
+            <Input placeholder={"Enter title"} label={"Title*"} onChange={e => {
                 setTitle(e.target.value);
             }} />
-            <Input placeholder={"Enter description"} label={"Description"} onChange={e => {
+            <Input placeholder={"Enter description"} label={"Description*"} onChange={e => {
                 setDescription(e.target.value);
             }} />
-            <Input placeholder={"Enter category"} label={"Category"} onChange={e => {
+            <Input placeholder={"Enter category"} label={"Category*"} onChange={e => {
                 setCategory(e.target.value);
             }} />
             <div className="flex flex-col px-2 py-1">
-                <div className="my-1 font-mono text-lg font-medium text-left"> Date </div>
+                <div className="my-1 font-mono text-lg font-medium text-left"> Date* </div>
                 <input type="date" placeholder="Enter date" className="w-full px-2 py-1 border-2 rounded-md" onChange={e => {
                     setDate(e.target.value);
                 }} />
             </div>
             <div className="flex flex-col px-2 py-1">
-                <div className="my-1 font-mono text-lg font-medium text-left"> Amount </div>
+                <div className="my-1 font-mono text-lg font-medium text-left"> Amount* </div>
                 <input type="number" placeholder="Enter amount" className="w-full px-2 py-1 border-2 rounded-md" onChange={e => {
                     setAmount(e.target.value);
                 }} />
             </div>
             <div className="flex flex-col px-2 py-1">
-                <label htmlFor="transaction_type" className="my-1 font-mono text-lg font-medium text-left">Choose transaction type:</label>
+                <label htmlFor="transaction_type" className="my-1 font-mono text-lg font-medium text-left">Choose transaction type*</label>
                 <select name="transaction_type" id="transaction_type" className="w-full px-2 py-1 border-2 rounded-md" onChange={e => {
                     setType(e.target.value);
                 }}>
@@ -48,6 +48,7 @@ export function AddTransaction() {
                     <option value="income">income</option>
                 </select>
             </div>
+            <div className="flex flex-col px-2 py-1 text-red-700">* fields are compulsary</div>
             <Button text={"Add transaction"} onClick={async () => {
                 const response = await axios.post("http://localhost:3000/transaction/add", {
                     title, description, date, category, amount, type

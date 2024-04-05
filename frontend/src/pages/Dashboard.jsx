@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Navbar } from "../component/Navbar";
 import axios from "axios";
 import { TransactionDetails } from "../component/TransactionDetails";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function Dashboard() {
 
