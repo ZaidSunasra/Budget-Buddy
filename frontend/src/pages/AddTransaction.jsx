@@ -50,7 +50,7 @@ export function AddTransaction() {
             </div>
             <div className="flex flex-col px-2 py-1 text-red-700">* fields are compulsary</div>
             <Button text={"Add transaction"} onClick={async () => {
-                const response = await axios.post("https://budget-buddy-8epz.onrender.com/transaction/add", {
+                const response = await axios.post("http://localhost:3000/transaction/add", {
                     title, description, date, category, amount, type
                 },
                 {

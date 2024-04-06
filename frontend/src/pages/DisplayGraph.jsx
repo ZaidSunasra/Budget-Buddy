@@ -18,7 +18,7 @@ export function DisplayGraph() {
 
     useEffect(() => {
         async function showCategoryWiseExpense() {
-            const response = await axios.get("https://budget-buddy-8epz.onrender.com/showBy/category", {
+            const response = await axios.get("http://localhost:3000/showBy/category", {
                 headers: {
                     authorization: "Bearer " + localStorage.getItem("Token")
                 }
@@ -30,7 +30,7 @@ export function DisplayGraph() {
 
     useEffect(() => {
         async function showDateWiseExpense() {
-            const response = await axios.get("https://budget-buddy-8epz.onrender.com/showBy/last7Days", {
+            const response = await axios.get("http://localhost:3000/showBy/last7Days", {
                 headers: {
                     authorization: "Bearer " + localStorage.getItem("Token")
                 }
