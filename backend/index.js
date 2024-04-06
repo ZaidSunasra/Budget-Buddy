@@ -6,7 +6,11 @@ import cors from 'cors';
 const app = express();
 const PORT = 3000;
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://budget-buddy-gamma.vercel.app',
+    credentials: true
+}));
+
 app.use(bodyParser.urlencoded({ extended:true }));
 app.use(bodyParser.json())
 
