@@ -7,8 +7,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(cors({
-    origin: 'https://budget-buddy-gamma.vercel.app',
-    credentials: true
+    origin: 'https://budget-buddy-gamma.vercel.app'
 }));
 
 app.use(bodyParser.urlencoded({ extended:true }));
