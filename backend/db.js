@@ -8,11 +8,6 @@ const db = new pg.Client({
     ssl:{
         rejectUnauthorized: false
     }
-    // user: "postgres",
-    // host: "localhost",
-    // database: "Budget Buddy",
-    // password: process.env.POSTGRE_PASSWORD,
-    // port: 5432
 });
 
 await db.connect();
