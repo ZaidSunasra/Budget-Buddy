@@ -20,7 +20,7 @@ export function EditTransaction() {
     
     useEffect(() => {
         async function getTransactionDetails() {
-            const response = await axios.get("http://localhost:3000/transaction/get/" + id.id, {
+            const response = await axios.get("https://budget-buddy-8epz.onrender.com/transaction/get/" + id.id, {
                 headers: {
                     authorization: "Bearer " + localStorage.getItem("Token")
                 }
@@ -85,7 +85,7 @@ export function EditTransaction() {
                 </select>
             </div>
             <Button text={"Edit transaction"} onClick={async () => {
-                const response = await axios.patch("http://localhost:3000/transaction/edit/" + transaction_id, {
+                const response = await axios.patch("https://budget-buddy-8epz.onrender.com/transaction/edit/" + transaction_id, {
                     title, description, date, category, amount, type
                 },
                     {

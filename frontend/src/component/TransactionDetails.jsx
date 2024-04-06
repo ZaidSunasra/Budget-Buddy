@@ -4,7 +4,7 @@ import { Confirmation } from "./Confirmation";
 import axios from "axios";
 
 async () => {
-    const response = axios.delete("http://localhost:3000/transaction/delete", {
+    const response = axios.delete("https://budget-buddy-8epz.onrender.com/transaction/delete", {
         id
     },
         {
@@ -25,7 +25,7 @@ export function TransactionDetails({ data, filter }) {
         return <div>
             <Confirmation message={"Are you sure you want to delete this transaction"} onCancel={() => { setIsConfirmation(false) }}
                 onConfirm={async () => {
-                    const response = await axios.delete("http://localhost:3000/transaction/delete?id=" + id, {
+                    const response = await axios.delete("https://budget-buddy-8epz.onrender.com/transaction/delete?id=" + id, {
                         headers: {
                             authorization: "Bearer " + localStorage.getItem("Token")
                         }

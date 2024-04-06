@@ -31,7 +31,7 @@ export function SignUp() {
                 setpassword(e.target.value);
             }} />
             <Button text={"Sign Up"} onClick={async () => {
-                const response = await axios.post("http://localhost:3000/signup", {
+                const response = await axios.post("https://budget-buddy-8epz.onrender.com/signup", {
                     firstName, lastName, email, password
                 });
                 console.log(response);

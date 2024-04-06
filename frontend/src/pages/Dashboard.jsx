@@ -17,7 +17,7 @@ export function Dashboard() {
 
     useEffect(() => {
         async function getSearchedTransaction() {
-            const response = await axios.get("http://localhost:3000/transaction/filter?filter=" + filter, {
+            const response = await axios.get("https://budget-buddy-8epz.onrender.com/transaction/filter?filter=" + filter, {
                 headers: {
                     authorization: "Bearer " + localStorage.getItem("Token")
                 }
@@ -29,7 +29,7 @@ export function Dashboard() {
 
     useEffect(() => {
         async function getAllTransactions() {
-            const response = await axios.get("http://localhost:3000/transaction/get", {
+            const response = await axios.get("https://budget-buddy-8epz.onrender.com/transaction/get", {
                 headers: {
                     authorization: "Bearer " + localStorage.getItem("Token")
                 }
@@ -41,7 +41,7 @@ export function Dashboard() {
 
     useEffect(() => {
         async function getUserDetails() {
-            const response = await axios.get("http://localhost:3000/get/userDetails", {
+            const response = await axios.get("https://budget-buddy-8epz.onrender.com/get/userDetails", {
                 headers: {
                     authorization: "Bearer " + localStorage.getItem("Token")
                 }
@@ -53,7 +53,7 @@ export function Dashboard() {
 
     useEffect(() => {
         async function getIncomeDetails() {
-            const response = await axios.get("http://localhost:3000/get/incomeDetails", {
+            const response = await axios.get("https://budget-buddy-8epz.onrender.com/get/incomeDetails", {
                 headers: {
                     authorization: "Bearer " + localStorage.getItem("Token")
                 }

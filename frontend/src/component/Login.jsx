@@ -22,7 +22,7 @@ export function Login() {
                 setPassword(e.target.value);
             }} />
             <Button text={"Login"} onClick={async () => {
-                const response = await axios.post("http://localhost:3000/signin", {
+                const response = await axios.post("https://budget-buddy-8epz.onrender.com/signin", {
                     email, password
                 });
                 if (response.data.msg == "Login successfull") {
