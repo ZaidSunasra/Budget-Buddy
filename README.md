@@ -11,6 +11,34 @@ An expense tracker app which helps user to track and manage their expenses and i
 - [ ]  PWA (Progressive Web App)
 - [ ] Budgeting for Users
 
+
+## Installation Guide
+```
+cd backend
+```
+```
+npm install
+```
+Create a .env file
+Add following variables and replace the value with your
+```
+POSTGRE_PASSWORD=YOUR POSTGRE PASSWORD
+JWT_SECRET=YOUR JWT SECRET
+```
+```
+nodemon index.js
+```
+Open a new terminal 
+```
+cd frontend
+```
+```
+npm install
+```
+```
+npm run dev
+```
+
 ## TECH STACK
 <code><img width="50" src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png" alt="React" title="React"/></code>
 <code><img width="50" src="https://user-images.githubusercontent.com/25181517/183568594-85e280a7-0d7e-4d1a-9028-c8c2209e073c.png" alt="Node.js" title="Node.js"/></code>
