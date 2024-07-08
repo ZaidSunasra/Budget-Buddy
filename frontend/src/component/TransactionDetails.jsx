@@ -32,13 +32,13 @@ export function TransactionDetails({ data, filter }) {
                     });
                     setIsConfirmation(false);
                     filter("");
-                }} 
+                }}
             />
         </div>
 
     }
 
-    return <div className="px-2 flex justify-center">
+    return <div className="px-2 flex justify-start">
         <div className="p-1 text-center cursor-pointer min-w-32 w-32 lg:w-1/6  font-mono font-bold flex justify-center items-center text-xl border-2 border-black"> {data.date.slice(0, 10)} </div>
         <div className="p-1 text-center cursor-pointer min-w-48 w-48 lg:w-1/4  font-mono font-bold flex justify-center items-center text-xl border-2 border-black"> {data.title + " \n " + data.description} </div>
         <div className="p-1 text-center cursor-pointer min-w-36 w-36 lg:w-1/6  font-mono font-bold flex justify-center items-center text-xl border-2 border-black"> {data.amount} </div>

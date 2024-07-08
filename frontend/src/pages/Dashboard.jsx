@@ -37,7 +37,7 @@ export function Dashboard() {
             setTransaction(response.data.transactions.rows);
         }
         getAllTransactions();
-    }, [transaction]);
+    }, []);
 
     useEffect(() => {
         async function getUserDetails() {
@@ -64,7 +64,6 @@ export function Dashboard() {
         }
         getIncomeDetails();
     }, [transaction]);
-
 
     return <div>
         <Navbar name={name} />
@@ -99,7 +98,7 @@ export function Dashboard() {
             </button>
         </div>
         <div className="overflow-x-auto">
-            <div className="px-2 flex justify-center">
+            <div className="px-2 flex justify-start">
                 <div className={`bg-blue-600 w-32 min-w-32  lg:w-1/6 p-1 font-mono text-xl font-bold text-center  border-2 border-black`}>
                     Date
                 </div>
@@ -118,12 +117,6 @@ export function Dashboard() {
                 <div className={`bg-blue-600 w-44 min-w-44 lg:w-1/6 p-1 font-mono text-xl font-bold text-center  border-2 border-black`}>
                     Action
                 </div>
-                {/* <TableCell key={"date"} data={"Date"} />
-                <TableCell key={"title"} data={"Title"} />
-                <TableCell key={"amount"} data={"Amount"} />
-                <TableCell key={"category"} data={"Category"} />
-                <TableCell key={"type"} data={"Type"} />
-                <TableCell key={"action"} data={"Action"} /> */}
             </div>
             {filter ? (
                 displayTransaction.map(display => <TransactionDetails key={display.transaction_id} data={display} filter={setFilter} />)
@@ -131,7 +124,6 @@ export function Dashboard() {
                 transaction.map(trans => <TransactionDetails key={trans.transaction_id} data={trans} filter={setFilter} />)
             )}
         </div>
-
     </div>
 
 }
