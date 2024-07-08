@@ -2,17 +2,19 @@ import { Landing } from "./pages/LandingPage"
 import { SignUp } from "./component/SignUp"
 import { Dashboard } from "./pages/Dashboard"
 import { AddTransaction } from "./pages/AddTransaction"
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import { EditTransaction } from "./pages/EditTransaction"
 import { DisplayGraph } from "./pages/DisplayGraph"
 
 function App() {
 
+  const token = localStorage.getItem("Token");
+
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          {(token)?  <Route path="/" element={<Dashboard />} />: <Route path="/" element={<Landing />} />}
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/addTransaction" element={<AddTransaction />} />
