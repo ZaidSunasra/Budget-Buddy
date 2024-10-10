@@ -9,3 +9,16 @@ export type SignUp = {
     email: string,
     password: string,
 }
+
+export type addTransaction = {
+    title:string, 
+    type:string, 
+    transaction_time: string, 
+    amount:string
+}
+
+export type editTransaction = {
+    title:string, 
+    type:string, 
+    amount:string
+}

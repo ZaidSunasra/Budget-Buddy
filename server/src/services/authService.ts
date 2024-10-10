@@ -1,4 +1,4 @@
-import { SignIn, SignUp } from "../types/types";
+import { SignIn } from "../types/types";
 import { db } from "../db/db";
 import bcrypt from 'bcrypt'
 
