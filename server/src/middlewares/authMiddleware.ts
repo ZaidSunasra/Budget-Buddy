@@ -25,7 +25,6 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
         }
 
         res.locals.id = result.rows[0].id;
-        console.log(res.locals.id);
 
         next();
 
