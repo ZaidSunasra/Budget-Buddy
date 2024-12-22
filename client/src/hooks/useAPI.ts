@@ -32,20 +32,23 @@ export const postData = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [serverError, setServerError] = useState<any>(null);
 
-    const fetchData = async ({ url, payload}: { url: string, payload: any}) => {
+    const fetchData = async ({ url, payload }: { url: string, payload: any }) => {
         setIsLoading(true);
         setServerError(null);
         setApiData(null);
         try {
-            console.log(payload)
             const response = await axios.post(url, payload);
             setApiData(response.data);
         } catch (error: any) {
-            setServerError(error);
+            if (error.response && error.response.data) {
+                setServerError(error.response.data);
+            } else {
+                setServerError({ msg: "Something went wrong. Please try again." });
+            }
         } finally {
             setIsLoading(false);
         }
     }
-    return {  fetchData, apiData, serverError, isLoading };
+    return { fetchData, apiData, serverError, isLoading };
 
 }
