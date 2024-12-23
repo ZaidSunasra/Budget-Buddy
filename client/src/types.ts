@@ -9,3 +9,5 @@ export type signupInput = {
     firstName: string,
     lastName: string
 }
+
+export const baseURL = import.meta.env.VITE_BASE_API;
