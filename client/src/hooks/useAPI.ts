@@ -11,7 +11,9 @@ export const getData = ({ url }: { url: string }) => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const response = await axios.get(url);
+                const response = await axios.get(url,{
+                    withCredentials: true,
+                });
                 setApiData(response.data);
             } catch (error: any) {
                 setServerError(error);
@@ -37,7 +39,9 @@ export const postData = () => {
         setServerError(null);
         setApiData(null);
         try {
-            const response = await axios.post(url, payload);
+            const response = await axios.post(url, payload, {
+                withCredentials: true,
+            });
             setApiData(response.data);
         } catch (error: any) {
             if (error.response && error.response.data) {
