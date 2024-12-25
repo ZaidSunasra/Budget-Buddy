@@ -23,7 +23,8 @@ function Signup() {
             password: data.password,
             firstName: data.firstName,
             lastName: data.lastName
-         }
+         },
+         method: 'POST'
       })
    }
 
