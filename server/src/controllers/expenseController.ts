@@ -7,12 +7,13 @@ const addExpenseSchema = z.object({
     title: z.string(),
     type: z.enum(['expense', 'income']),
     transaction_time: z.coerce.date(),
+    category:z.string(),
     amount: z.coerce.number()
 });
 
 export const addExpenseController = async (req: Request, res: Response): Promise<any> => {
 
-    const { title, type, transaction_time, amount } = req.body;
+    const { title, type, transaction_time, amount, category} = req.body;
     const id = res.locals.id;
 
     const zodValidation = addExpenseSchema.safeParse(req.body);
@@ -25,7 +26,7 @@ export const addExpenseController = async (req: Request, res: Response): Promise
     }
 
     try {
-        await addExpense({ title, type, transaction_time, amount }, id);
+        await addExpense({ title, type, transaction_time, amount, category}, id);
         return res.status(201).json({
             msg: "Expense added successfully",
         });
@@ -75,12 +76,13 @@ export const getExpenseByIdController = async (req: Request, res: Response) : Pr
 const editExpenseSchema = z.object({
     title: z.string(),
     type: z.enum(['expense', 'income']),
-    amount: z.coerce.number()
+    amount: z.coerce.number(),
+    category: z.string()
 });
 
 export const editExpenseController = async (req: Request, res: Response) : Promise<any> => {
 
-    const {title, type, amount } = req.body;
+    const {title, type, amount, category} = req.body;
     const id = req.params.id
 
     const zodValidation = editExpenseSchema.safeParse(req.body);
@@ -93,9 +95,9 @@ export const editExpenseController = async (req: Request, res: Response) : Promi
     }
 
     try {
-        await editExpense({ title, type, amount }, id);
+        await editExpense({ title, type, amount, category}, id);
         return res.status(201).json({
-            msg: "Expense with " + id + " edited successfully",
+            msg: "Expense edited successfully",
         });
 
     } catch (error) {
