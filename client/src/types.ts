@@ -3,6 +3,15 @@ export type loginInput = {
     password: string
 }
 
+export type expenseInput = {
+    id: string,
+    transaction_time: string,
+    title: string,
+    category: string, 
+    type: string,
+    amount: string
+}
+
 export type signupInput = {
     email: string,
     password: string,
