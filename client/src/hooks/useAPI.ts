@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 export const getData = ({ url }: { url: string }) => {
 
@@ -11,7 +11,7 @@ export const getData = ({ url }: { url: string }) => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const response = await axios.get(url,{
+                const response = await axios.get(url, {
                     withCredentials: true,
                 });
                 setApiData(response.data);
@@ -34,14 +34,18 @@ export const postData = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [serverError, setServerError] = useState<any>(null);
 
-    const fetchData = async ({ url, payload }: { url: string, payload: any }) => {
+    const fetchData = async ({ url, payload, method }: { url: string, payload: any, method: 'POST' | 'PUT' | 'DELETE' | 'PATCH' }) => {
+        const config = {
+            method,
+            url,
+            data: payload,
+            withCredentials: true
+        }
         setIsLoading(true);
         setServerError(null);
         setApiData(null);
         try {
-            const response = await axios.post(url, payload, {
-                withCredentials: true,
-            });
+            const response = await axios(config);
             setApiData(response.data);
         } catch (error: any) {
             if (error.response && error.response.data) {
@@ -54,5 +58,5 @@ export const postData = () => {
         }
     }
     return { fetchData, apiData, serverError, isLoading };
-
+    
 }
