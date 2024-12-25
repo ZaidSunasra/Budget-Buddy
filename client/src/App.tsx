@@ -7,7 +7,9 @@ import { SidebarProvider } from "./components/ui/sidebar";
 import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
 import Budget from "./pages/Budgeting";
-import { Loading } from "./components/Loading";
+import AddTransaction from "./pages/AddTransaction";
+import EditTransaction from "./pages/EditTransaction";
+
 function App() {
   return (
     <>
@@ -21,7 +23,8 @@ function App() {
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/budgeting" element={<Budget />} />
-            <Route path="/load" element={<Loading />} />
+            <Route path="/addTransaction" element={<AddTransaction />} />
+            <Route path="/editTransaction/:id" element={<EditTransaction />} />
           </Routes>
         </BrowserRouter>
       </SidebarProvider>
