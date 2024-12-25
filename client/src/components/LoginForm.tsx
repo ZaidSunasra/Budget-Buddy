@@ -20,7 +20,8 @@ export function Login() {
             payload: {
                 email: data.email,
                 password: data.password
-            }
+            },
+            method: 'POST'
         });
     }
 
