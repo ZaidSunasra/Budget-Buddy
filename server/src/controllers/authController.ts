@@ -98,7 +98,12 @@ export const signinController = async (req: Request, res: Response): Promise<any
         });
 
         return res.status(200).send({
-            msg: "Logged in successfully"
+            msg: "Logged in successfully",
+            userData: {
+                firstName: getUser[0].first_name,
+                lastName: getUser[0].last_name,
+                email: getUser[0].email
+            }
         });
 
     } catch (error) {
