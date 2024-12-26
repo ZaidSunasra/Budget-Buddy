@@ -14,7 +14,7 @@ function Dashboard() {
 
     const navigate = useNavigate();
 
-    const { apiData, isLoading, serverError } = getData({
+    const { apiData, isLoading, serverError, refetch} = getData({
         url: `${baseURL}/expense/get`
     });
 
@@ -37,7 +37,7 @@ function Dashboard() {
                 <Button className="w-1/5 text-secondary flex gap-5" onClick={() => navigate("/addTransaction")}> <Plus /> Add Transaction </Button>
             </div>
             <div className="max-h-[85vh] overflow-y-auto border-2">
-            <TransactionTable data={apiData} />
+            <TransactionTable data={apiData} onDelete={refetch}/>
             </div>
             
         </div>

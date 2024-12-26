@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const getData = ({ url }: { url: string }) => {
 
@@ -7,24 +7,24 @@ export const getData = ({ url }: { url: string }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [serverError, setServerError] = useState<any>(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            try {
-                const response = await axios.get(url, {
-                    withCredentials: true,
-                });
-                setApiData(response.data);
-            } catch (error: any) {
-                setServerError(error);
-            } finally {
-                setIsLoading(false);
-            }
+    const fetchData = useCallback(async () => {
+        setIsLoading(true);
+        try {
+            const response = await axios.get(url, {
+                withCredentials: true,
+            });
+            setApiData(response.data);
+        } catch (error: any) {
+            setServerError(error);
+        } finally {
+            setIsLoading(false);
         }
+    }, [url])
+    useEffect(() => {
         fetchData();
-    }, [url]);
+    }, [fetchData]);
 
-    return { apiData, isLoading, serverError };
+    return { apiData, isLoading, serverError, refetch: fetchData};
 
 }
 
