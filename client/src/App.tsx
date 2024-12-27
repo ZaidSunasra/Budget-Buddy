@@ -1,14 +1,14 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Landing from "./pages/Landing"
-import { Toaster } from "sonner";
-import Signup from "./pages/Signup";
-import Dashboard from "./pages/Dashboard";
-import { SidebarProvider } from "./components/ui/sidebar";
-import Analytics from "./pages/Analytics";
-import Settings from "./pages/Settings";
-import Budget from "./pages/Budgeting";
-import AddTransaction from "./pages/AddTransaction";
-import EditTransaction from "./pages/EditTransaction";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Landing from './pages/Landing';
+import { Toaster } from 'sonner';
+import Signup from './pages/Signup';
+import Dashboard from './pages/Dashboard';
+import { SidebarProvider } from './components/ui/sidebar';
+import Analytics from './pages/Analytics';
+import Settings from './pages/Settings';
+import Budget from './pages/Budgeting';
+import AddTransaction from './pages/AddTransaction';
+import EditTransaction from './pages/EditTransaction';
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
         </BrowserRouter>
       </SidebarProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
