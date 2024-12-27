@@ -44,7 +44,7 @@ export function SideBar() {
 
   return (
     <>
-      <Sidebar collapsible="icon">
+      <Sidebar collapsible="icon" className='font-mono'>
         <SidebarHeader className="mb-2">
           <SidebarMenu>
             <SidebarMenuItem>
