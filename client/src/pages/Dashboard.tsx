@@ -9,20 +9,21 @@ import { toast } from 'sonner';
 import { getData } from '@/hooks/useAPI';
 import { baseURL } from '@/types';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useDebounce } from '@/hooks/useDebounce';
 
 function Dashboard() {
   const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState('');
 
   const { apiData, isLoading, serverError, refetch } = getData({
     url: `${baseURL}/expense/get`,
   });
 
+  const debouncedSearchResults = useDebounce(searchValue);
+
   if (isLoading) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
+    return <Loading />;
   }
 
   if (serverError) {
@@ -30,7 +31,7 @@ function Dashboard() {
   }
 
   return (
-    <div className="flex w-screen">
+    <div className="flex w-screen font-mono">
       <SideBar />
       <SidebarTrigger />
       <div className="p-4 w-full">
@@ -39,17 +40,21 @@ function Dashboard() {
             placeholder="Search expenses"
             className="w-4/5"
             type="search"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
           />
           <Button
             className="w-1/5 text-secondary flex gap-5"
             onClick={() => navigate('/addTransaction')}
           >
-            {' '}
-            <Plus /> Add Transaction{' '}
+            <Plus /> Add Transaction
           </Button>
         </div>
         <div className="max-h-[85vh] overflow-y-auto border-2">
-          <TransactionTable data={apiData} onDelete={refetch} />
+          <TransactionTable
+            data={debouncedSearchResults || apiData}
+            onDelete={refetch}
+          />
         </div>
       </div>
     </div>
