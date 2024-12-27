@@ -1,7 +1,7 @@
 import z from 'zod';
 import { Request, Response } from 'express';
 import env from 'dotenv';
-import { addExpense, deleteExpense, editExpense, getExpense, getExpenseById } from '../services/expenseService';
+import { addExpense, deleteExpense, editExpense, getExpense, getExpenseById, searchExpense } from '../services/expenseService';
 
 const addExpenseSchema = z.object({
     title: z.string(),
@@ -118,6 +118,24 @@ export const deleteExpenseController = async (req: Request, res: Response) : Pro
             msg: "Expense deleted successfully",
         });
 
+    } catch (error) {
+        console.log("Error in deleting expense: ", error);
+        return res.status(500).send({
+            msg: "Internal server error",
+        });
+    }
+}
+
+export const searchExpenseController = async(req: Request, res: Response) : Promise<any>=> {
+
+    const searchValue : any = req.query.value;
+    const id = res.locals.id
+
+    try {
+        const response = await searchExpense(searchValue, id)
+        return res.status(201).json({
+            expenses: response,
+        });
     } catch (error) {
         console.log("Error in deleting expense: ", error);
         return res.status(500).send({
