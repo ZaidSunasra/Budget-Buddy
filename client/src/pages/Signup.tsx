@@ -7,8 +7,8 @@ import { Label } from '@radix-ui/react-label';
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-
 import { toast } from 'sonner';
+import { setUser } from '@/lib/userDetails';
 
 function Signup() {
   const navigate = useNavigate();
@@ -34,7 +34,8 @@ function Signup() {
   useEffect(() => {
     if (apiData) {
       toast(apiData.msg);
-      navigate('/');
+      setUser(apiData.userData);
+      navigate('/dashboard');
     } else if (serverError) {
       toast(serverError.msg);
     }

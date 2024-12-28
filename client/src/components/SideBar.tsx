@@ -17,8 +17,13 @@ import {
   IndianRupee,
 } from 'lucide-react';
 import { Avatar } from './ui/avatar';
+import { getUser } from '@/lib/userDetails';
+import { useState } from 'react';
+import { userDetail } from '@/types';
 
 export function SideBar() {
+  
+  const [user] = useState<userDetail>(getUser)
   const navOptions = [
     {
       title: 'Dashboard',
@@ -44,7 +49,7 @@ export function SideBar() {
 
   return (
     <>
-      <Sidebar collapsible="icon" className='font-mono'>
+      <Sidebar collapsible="icon" className="font-mono">
         <SidebarHeader className="mb-2">
           <SidebarMenu>
             <SidebarMenuItem>
@@ -82,13 +87,15 @@ export function SideBar() {
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg flex items-center justify-center border-2 border-sidebar-border">
                   {/* <AvatarFallback>ZS</AvatarFallback> */}
-                  ZS
+                  {user.firstName[0]}
+                  {user.lastName[0]}
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">Zaid Sunasra </span>
-                  <span className="truncate text-xs">
-                    zaidsunasra26@gmail.com{' '}
+                  <span className="truncate font-semibold">
+                    {' '}
+                    {user.firstName} {user.lastName}
                   </span>
+                  <span className="truncate text-xs">{user.email}</span>
                 </div>
               </div>
             </SidebarMenuItem>

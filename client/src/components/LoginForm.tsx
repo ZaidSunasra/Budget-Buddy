@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { baseURL, loginInput } from '@/types';
 import { ErrorMessage } from './ErrorMessage';
+import { setUser } from '@/lib/userDetails';
 
 export function Login() {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ export function Login() {
   useEffect(() => {
     if (apiData) {
       toast(apiData.msg);
+      setUser(apiData.userData)
       navigate('/dashboard');
     }
     if (serverError) {
