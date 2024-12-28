@@ -45,6 +45,11 @@ export const signupController = async (req: Request, res: Response) : Promise<an
 
         return res.status(201).json({
             msg: "User registered successfully",
+            userData: {
+                firstName: firstName,
+                lastName: lastName,
+                email: email
+            }
         });
 
     } catch (error) {
