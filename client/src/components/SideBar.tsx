@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import {
   Sidebar,
   SidebarContent,
@@ -8,6 +8,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from './ui/sidebar';
 import {
   LayoutDashboard,
@@ -15,15 +16,40 @@ import {
   ChartNoAxesCombined,
   Wallet,
   IndianRupee,
+  ChevronsUpDown,
+  LogOut,
 } from 'lucide-react';
 import { Avatar } from './ui/avatar';
-import { getUser } from '@/lib/userDetails';
-import { useState } from 'react';
-import { userDetail } from '@/types';
+import { getUser, clearUser} from '@/lib/userDetails';
+import { useEffect, useState } from 'react';
+import { baseURL, userDetail } from '@/types';
+import { DropdownMenu, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from './ui/dropdown-menu';
+import { DropdownMenuContent, DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
+import { postData } from '@/hooks/useAPI';
+import { toast } from 'sonner';
 
 export function SideBar() {
-  
+  const { isMobile } = useSidebar()
   const [user] = useState<userDetail>(getUser)
+  const {fetchData, apiData} = postData();
+  const navigate = useNavigate();
+
+  async function handleLogout(){
+    clearUser();
+    await fetchData({
+      url: `${baseURL}/auth/logout`,
+      payload:{},
+      method: "POST"
+    });
+    navigate("/");
+  }
+
+  useEffect(() => {
+    if(apiData){
+      toast(apiData.msg);
+    }
+  }, [apiData]);
+ 
   const navOptions = [
     {
       title: 'Dashboard',
@@ -84,24 +110,52 @@ export function SideBar() {
         <SidebarFooter>
           <SidebarMenu>
             <SidebarMenuItem>
-              <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <Avatar className="h-8 w-8 rounded-lg flex items-center justify-center border-2 border-sidebar-border">
-                  {/* <AvatarFallback>ZS</AvatarFallback> */}
-                  {user.firstName[0]}
-                  {user.lastName[0]}
-                </Avatar>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">
-                    {' '}
-                    {user.firstName} {user.lastName}
-                  </span>
-                  <span className="truncate text-xs">{user.email}</span>
-                </div>
-              </div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                    <Avatar className="h-8 w-8 rounded-lg flex items-center justify-center border-2 border-sidebar-border">
+                      {user.firstName[0]}
+                      {user.lastName[0]}
+                    </Avatar>
+                    <div className="grid flex-1 text-left text-sm leading-tight">
+                      <span className="truncate font-semibold">
+                        {' '}
+                        {user.firstName} {user.lastName}
+                      </span>
+                      <span className="truncate text-xs">{user.email}</span>
+                    </div>
+                    <ChevronsUpDown />
+                  </div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg  border px-4 py-2 bg-sidebar-background"
+                  side= {isMobile ? "top" : "right"}
+                  align="end"
+                  sideOffset={4}>
+                  <DropdownMenuLabel className="p-0 font-normal">
+                    <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                      <Avatar className="h-8 w-8 rounded-lg flex items-center justify-center border-2 border-sidebar-border">
+                        {user.firstName[0]}
+                        {user.lastName[0]}
+                      </Avatar>
+                      <div className="grid flex-1 text-left text-sm leading-tight">
+                        <span className="truncate font-semibold"> {user.firstName} {user.lastName}</span>
+                        <span className="truncate text-xs">{user.email}</span>
+                      </div>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuGroup>
+                    <DropdownMenuItem onClick={handleLogout}>
+                      <LogOut />
+                      Log out
+                    </DropdownMenuItem>
+                  </DropdownMenuGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarFooter>
-      </Sidebar>
+      </Sidebar >
     </>
   );
 }

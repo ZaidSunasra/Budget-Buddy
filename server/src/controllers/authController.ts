@@ -13,7 +13,7 @@ const signupSchema = z.object({
     lastName: z.string()
 })
 
-export const signupController = async (req: Request, res: Response) : Promise<any> => {
+export const signupController = async (req: Request, res: Response): Promise<any> => {
 
     const { email, password, firstName, lastName } = req.body;
 
@@ -29,18 +29,18 @@ export const signupController = async (req: Request, res: Response) : Promise<an
 
         const checkUser = await findExistingUser(email);
         if (checkUser.length > 0) {
-            return res.status(409).json({  
+            return res.status(409).json({
                 msg: "Email already registered"
             });
         }
 
-        await addNewUser({email, password, firstName, lastName});
+        await addNewUser({ email, password, firstName, lastName });
 
-        const token = jwt.sign({ email }, process.env.JWT_SECRET as string, {expiresIn: '1d'});
+        const token = jwt.sign({ email }, process.env.JWT_SECRET as string, { expiresIn: '1d' });
         res.cookie("Token", token, {
             maxAge: 24 * 60 * 60 * 1000,
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production', 
+            secure: process.env.NODE_ENV === 'production',
         });
 
         return res.status(201).json({
@@ -93,9 +93,9 @@ export const signinController = async (req: Request, res: Response): Promise<any
             });
         }
 
-        const token = jwt.sign({ email }, process.env.JWT_SECRET as string, { expiresIn: '1d'});
+        const token = jwt.sign({ email }, process.env.JWT_SECRET as string, { expiresIn: '1d' });
 
-        res.cookie("Token", token, { 
+        res.cookie("Token", token, {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000,
             secure: process.env.NODE_ENV === 'production',
@@ -118,3 +118,17 @@ export const signinController = async (req: Request, res: Response): Promise<any
         });
     }
 }
+
+export const logoutController = async (req: Request, res: Response): Promise<any> => {
+    try {
+        res.clearCookie('Token');
+        return res.status(200).send({
+            msg: "Logout successful"
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send({
+            msg: "Internal server error",
+        });
+    }
+} 
