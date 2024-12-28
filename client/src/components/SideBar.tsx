@@ -20,36 +20,45 @@ import {
   LogOut,
 } from 'lucide-react';
 import { Avatar } from './ui/avatar';
-import { getUser, clearUser} from '@/lib/userDetails';
+import { getUser, clearUser } from '@/lib/userDetails';
 import { useEffect, useState } from 'react';
 import { baseURL, userDetail } from '@/types';
-import { DropdownMenu, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from './ui/dropdown-menu';
-import { DropdownMenuContent, DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from './ui/dropdown-menu';
+import {
+  DropdownMenuContent,
+  DropdownMenuSeparator,
+} from '@radix-ui/react-dropdown-menu';
 import { postData } from '@/hooks/useAPI';
 import { toast } from 'sonner';
 
 export function SideBar() {
-  const { isMobile } = useSidebar()
-  const [user] = useState<userDetail>(getUser)
-  const {fetchData, apiData} = postData();
+  const { isMobile } = useSidebar();
+  const [user] = useState<userDetail>(getUser);
+  const { fetchData, apiData } = postData();
   const navigate = useNavigate();
 
-  async function handleLogout(){
+  async function handleLogout() {
     clearUser();
     await fetchData({
       url: `${baseURL}/auth/logout`,
-      payload:{},
-      method: "POST"
+      payload: {},
+      method: 'POST',
     });
-    navigate("/");
+    navigate('/');
   }
 
   useEffect(() => {
-    if(apiData){
+    if (apiData) {
       toast(apiData.msg);
     }
   }, [apiData]);
- 
+
   const navOptions = [
     {
       title: 'Dashboard',
@@ -127,10 +136,12 @@ export function SideBar() {
                     <ChevronsUpDown />
                   </div>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg  border px-4 py-2 bg-sidebar-background"
-                  side= {isMobile ? "top" : "right"}
+                <DropdownMenuContent
+                  className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg  border px-4 py-2 bg-sidebar-background"
+                  side={isMobile ? 'top' : 'right'}
                   align="end"
-                  sideOffset={4}>
+                  sideOffset={4}
+                >
                   <DropdownMenuLabel className="p-0 font-normal">
                     <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                       <Avatar className="h-8 w-8 rounded-lg flex items-center justify-center border-2 border-sidebar-border">
@@ -138,7 +149,10 @@ export function SideBar() {
                         {user.lastName[0]}
                       </Avatar>
                       <div className="grid flex-1 text-left text-sm leading-tight">
-                        <span className="truncate font-semibold"> {user.firstName} {user.lastName}</span>
+                        <span className="truncate font-semibold">
+                          {' '}
+                          {user.firstName} {user.lastName}
+                        </span>
                         <span className="truncate text-xs">{user.email}</span>
                       </div>
                     </div>
@@ -155,7 +169,7 @@ export function SideBar() {
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarFooter>
-      </Sidebar >
+      </Sidebar>
     </>
   );
 }

@@ -32,7 +32,7 @@ export function Login() {
   useEffect(() => {
     if (apiData) {
       toast(apiData.msg);
-      setUser(apiData.userData)
+      setUser(apiData.userData);
       navigate('/dashboard');
     }
     if (serverError) {

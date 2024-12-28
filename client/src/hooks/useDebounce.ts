@@ -3,7 +3,6 @@ import { baseURL } from '@/types';
 import axios from 'axios';
 
 export const useDebounce = (value: string) => {
-    
   const [debouncedValue, setDebouncedValue] = useState<string>(value);
   const [query, setQuery] = useState<any>(null);
 
