@@ -51,16 +51,16 @@ export function TransactionTable({
     }
   }, [apiData, serverError]);
 
-  console.log(data);
-
- if(!data?.expenses.length){
-  return <div className='font-bold text-lg text-center font-mono'>
-    No expenses to display
-  </div>
- }
+  if (!data?.expenses.length) {
+    return (
+      <div className="font-bold text-lg text-center font-mono">
+        No expenses to display
+      </div>
+    );
+  }
 
   return (
-    <div className='font-mono'>
+    <div className="font-mono">
       <Table>
         <TableHeader>
           <TableRow className="font-bold text-lg">
