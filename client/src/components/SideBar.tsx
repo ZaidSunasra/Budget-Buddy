@@ -137,7 +137,7 @@ export function SideBar() {
                   </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
-                  className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg  border px-4 py-2 bg-sidebar-background"
+                  className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg  border px-4 py-2 bg-sidebar"
                   side={isMobile ? 'top' : 'right'}
                   align="end"
                   sideOffset={4}
