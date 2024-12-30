@@ -25,15 +25,19 @@ import { toast } from 'sonner';
 export function TransactionTable({
   data,
   onDelete,
+  message
 }: {
   data: any;
   onDelete: () => void;
+  message: string;
 }) {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const { fetchData, apiData, serverError, isLoading } = postData();
-  async function deleteTransaction(id: string) {
+  async function deleteTransaction(id: string | null) {
+    if(!id) return;
     await fetchData({
       url: `${baseURL}/expense/delete/${id}`,
       payload: {},
@@ -54,7 +58,7 @@ export function TransactionTable({
   if (!data?.expenses.length) {
     return (
       <div className="font-bold text-lg text-center font-mono">
-        No expenses to display
+        {message}
       </div>
     );
   }
@@ -108,37 +112,41 @@ export function TransactionTable({
                   </Button>
                   <Button
                     className="bg-secondary text-red-500"
-                    onClick={() => setIsOpen(true)}
+                    onClick={() => { 
+                      setIsOpen(true);  
+                      setSelectedId(expense.id);
+                    }}
                   >
                     {' '}
                     <Trash2 />{' '}
                   </Button>
-                  <Dialog open={isOpen} onOpenChange={setIsOpen}>
-                    <DialogContent className="sm:max-w-md">
-                      <DialogHeader>
-                        <DialogTitle>Delete Transaction</DialogTitle>
-                        <DialogDescription className="text-red-500">
-                          Are you sure? This action cannot be undone.
-                        </DialogDescription>
-                      </DialogHeader>
-                      <DialogFooter className="sm:justify-start">
-                        <Button
-                          type="submit"
-                          className="px-3 flex gap-1 items-center"
-                          variant="destructive"
-                          onClick={() => deleteTransaction(expense.id)}
-                        >
-                          <span> {isLoading ? 'Deleting' : 'Delete'}</span>
-                          <Trash2 />
-                        </Button>
-                      </DialogFooter>
-                    </DialogContent>
-                  </Dialog>
                 </TableCell>
               </TableRow>
             ))}
         </TableBody>
       </Table>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Delete Transaction</DialogTitle>
+            <DialogDescription className="text-red-500">
+              Are you sure? This action cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="sm:justify-start">
+            <Button
+              type="submit"
+              className="px-3 flex gap-1 items-center"
+              variant="destructive"
+              onClick={() => deleteTransaction(selectedId)}
+              disabled={isLoading}
+            >
+              <span> {isLoading ? 'Deleting' : 'Delete'}</span>
+              <Trash2 />
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
