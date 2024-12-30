@@ -7,7 +7,7 @@ export const addExpense = async ({ title, type, transaction_time, amount, catego
 }
 
 export const getExpense = async (id: string): Promise<any> => {
-    const query = await db.query("SELECT * FROM expenses WHERE user_id = $1", [id]);
+    const query = await db.query("SELECT * FROM expenses WHERE user_id = $1 ORDER BY transaction_time DESC", [id]);
     return query.rows;
 }
 
