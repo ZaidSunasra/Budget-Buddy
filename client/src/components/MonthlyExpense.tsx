@@ -30,7 +30,7 @@ export function MonthlyChart() {
   });
 
   return (
-    <Card className="w-full">
+    <Card>
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1 text-center sm:text-left">
           <CardTitle>Daily Expense Overview</CardTitle>
@@ -50,7 +50,7 @@ export function MonthlyChart() {
         )}
         <ChartContainer
           config={chartConfig}
-          className="aspect-auto h-[250px] w-full"
+          className="h-[250px] w-full"
         >
           <AreaChart data={apiData?.response} accessibilityLayer>
             <defs>
@@ -114,52 +114,3 @@ export function MonthlyChart() {
   );
 }
 
-// <Card className="w-3/5">
-//         <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
-//           <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
-//             <CardTitle>Monthly Expense </CardTitle>
-//             <CardDescription>
-//               Showing total expense of each day for this month
-//             </CardDescription>
-//           </div>
-//         </CardHeader>
-//         <CardContent className="px-2 sm:p-6">
-//           {isLoading ? 'Fetching Data' : ''}
-//           <ChartContainer config={chartConfig} className="h-[250px] w-full">
-//             <BarChart accessibilityLayer data={apiData?.response}>
-//               <CartesianGrid vertical={false} />
-//               <XAxis
-//                 dataKey="transaction_date"
-//                 tickLine={false}
-//                 axisLine={false}
-//                 tickMargin={8}
-//                 minTickGap={32}
-//                 tickFormatter={(value) => {
-//                   const date = new Date(value);
-//                   return date.toLocaleDateString('en-US', {
-//                     month: 'short',
-//                     day: 'numeric',
-//                     year: '2-digit',
-//                   });
-//                 }}
-//               />
-//               <ChartTooltip
-//                 content={
-//                   <ChartTooltipContent
-//                     className="w-[150px]"
-//                     nameKey="total_expense"
-//                     labelFormatter={(value) => {
-//                       return new Date(value).toLocaleDateString('en-US', {
-//                         month: 'short',
-//                         day: 'numeric',
-//                         year: 'numeric',
-//                       });
-//                     }}
-//                   />
-//                 }
-//               />
-//               <Bar dataKey="total_expenses" />
-//             </BarChart>
-//           </ChartContainer>
-//         </CardContent>
-//       </Card>
