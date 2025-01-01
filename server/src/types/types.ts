@@ -24,3 +24,12 @@ export type editTransaction = {
     amount: string,
     category: string
 }
+
+export type addBudgetBody = {
+    category: string,
+    allocated_value: string
+}
+
+export type editBudgetBody = {
+    allocated_value: string
+}
