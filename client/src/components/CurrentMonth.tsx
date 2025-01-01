@@ -18,15 +18,15 @@ export function CurrentMonth() {
     <CardContent className="flex justify-between items-center">
       <div className="flex flex-col">
         <span className="font-bold text-lg text-red-500">
-          Expense: <span className="text-2xl">{apiData?.response[0].total_expense}</span>
+          Expense: <span className="text-2xl">{apiData?.response[0].total_expense ? apiData?.response[0].total_expense : 0}</span>
         </span>
         <span className="font-bold text-lg text-green-500">
-          Income: <span className="text-2xl">{apiData?.response[0].total_income}</span>
+          Income: <span className="text-2xl">{apiData?.response[0].total_income ? apiData?.response[0].total_income : 0}</span>
         </span>
       </div>
       <div className="flex flex-col text-right">
         <span className="font-semibold text-lg text-gray-700">Balance:</span>
-        <span className={`text-2xl font-bold ${balance < 0 ? 'text-red-500' : 'text-green-500'}`}>{balance}</span>
+        <span className={`text-2xl font-bold ${balance < 0 ? 'text-red-500' : 'text-green-500'}`}>{balance ? balance :  0}</span>
       </div>
     </CardContent>
   </Card>
