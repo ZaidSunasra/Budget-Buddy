@@ -1,6 +1,5 @@
 import z from 'zod';
 import { Request, Response } from 'express';
-import env from 'dotenv';
 import { addExpense, deleteExpense, editExpense, getExpense, getExpenseById, searchExpense } from '../services/expenseService';
 
 const addExpenseSchema = z.object({
