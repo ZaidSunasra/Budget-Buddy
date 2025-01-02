@@ -100,11 +100,13 @@ function AddTransaction() {
                 value: 999999,
                 message: 'Amount should be less than 999999',
               },
+              min: {
+                value: 0,
+                message: 'Amount should be greater than 0',
+              },
               required: { value: true, message: 'Amount cannot be empty' },
             })}
             type="number"
-            min={0}
-            max={999999}
           />
           {errors.amount && <ErrorMessage message={errors.amount.message} />}
         </div>
