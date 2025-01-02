@@ -48,10 +48,7 @@ export function MonthlyChart() {
         ) : (
           ''
         )}
-        <ChartContainer
-          config={chartConfig}
-          className="h-[250px] w-full"
-        >
+        <ChartContainer config={chartConfig} className="h-[250px] w-full">
           <AreaChart data={apiData?.response} accessibilityLayer>
             <defs>
               <linearGradient id="fillExpense" x1="0" y1="0" x2="0" y2="1">
@@ -113,4 +110,3 @@ export function MonthlyChart() {
     </Card>
   );
 }
-

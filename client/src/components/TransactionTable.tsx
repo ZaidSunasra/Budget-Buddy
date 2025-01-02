@@ -25,7 +25,7 @@ import { toast } from 'sonner';
 export function TransactionTable({
   data,
   onDelete,
-  message
+  message,
 }: {
   data: any;
   onDelete: () => void;
@@ -37,7 +37,7 @@ export function TransactionTable({
 
   const { fetchData, apiData, serverError, isLoading } = postData();
   async function deleteTransaction(id: string | null) {
-    if(!id) return;
+    if (!id) return;
     await fetchData({
       url: `${baseURL}/expense/delete/${id}`,
       payload: {},
@@ -57,9 +57,7 @@ export function TransactionTable({
 
   if (!data?.expenses.length) {
     return (
-      <div className="font-bold text-lg text-center font-mono">
-        {message}
-      </div>
+      <div className="font-bold text-lg text-center font-mono">{message}</div>
     );
   }
 
@@ -112,8 +110,8 @@ export function TransactionTable({
                   </Button>
                   <Button
                     className="bg-secondary text-red-500"
-                    onClick={() => { 
-                      setIsOpen(true);  
+                    onClick={() => {
+                      setIsOpen(true);
                       setSelectedId(expense.id);
                     }}
                   >

@@ -53,7 +53,11 @@ function Dashboard() {
         <div className="max-h-[85vh] overflow-y-auto border-2">
           <TransactionTable
             data={debouncedSearchResults || apiData}
-            message = {debouncedSearchResults ? "It seems we couldn't find anything that matches your search." : "Looks like you haven't added any expenses yet. Start by adding your first one!"}
+            message={
+              debouncedSearchResults
+                ? "It seems we couldn't find anything that matches your search."
+                : "Looks like you haven't added any expenses yet. Start by adding your first one!"
+            }
             onDelete={refetch}
           />
         </div>

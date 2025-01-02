@@ -28,7 +28,9 @@ export function CategoryExpense() {
   });
 
   const data = apiData?.response || [];
-  const maxValue = Math.max(...data.map((item:any)=> parseFloat(item.total_amount)));
+  const maxValue = Math.max(
+    ...data.map((item: any) => parseFloat(item.total_amount)),
+  );
 
   return (
     <Card>
@@ -36,7 +38,8 @@ export function CategoryExpense() {
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
           <CardTitle>Category-wise Expense Breakdown</CardTitle>
           <CardDescription>
-            Visualizing expenses distributed across various categories for better financial insights.
+            Visualizing expenses distributed across various categories for
+            better financial insights.
           </CardDescription>
         </div>
       </CardHeader>
@@ -61,24 +64,26 @@ export function CategoryExpense() {
               tickMargin={8}
               minTickGap={32}
               tickFormatter={(value) => {
-                return `${value[0].toUpperCase()}${value.slice(1)}`
+                return `${value[0].toUpperCase()}${value.slice(1)}`;
               }}
             />
-            <YAxis 
-            domain={[0, Math.ceil(maxValue * 1.1)]}
-            />
+            <YAxis domain={[0, Math.ceil(maxValue * 1.1)]} />
             <ChartTooltip
               content={
                 <ChartTooltipContent
                   className="w-[150px]"
                   nameKey="total_amount"
                   labelFormatter={(value) => {
-                    return `${value[0].toUpperCase()}${value.slice(1)}`
+                    return `${value[0].toUpperCase()}${value.slice(1)}`;
                   }}
                 />
               }
             />
-            <Bar dataKey="total_amount" fill='var(--color-total_amount)' barSize={20}/>
+            <Bar
+              dataKey="total_amount"
+              fill="var(--color-total_amount)"
+              barSize={20}
+            />
           </BarChart>
         </ChartContainer>
       </CardContent>
