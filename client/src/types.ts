@@ -25,4 +25,14 @@ export type userDetail = {
   email: string;
 };
 
+export type addCategory = {
+  category: string;
+  allocated_value: string;
+};
+
+export type editCategory = {
+  category: string;
+  allocated_value: string;
+};
+
 export const baseURL = import.meta.env.VITE_BASE_API;
