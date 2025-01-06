@@ -9,25 +9,31 @@ import Settings from './pages/Settings';
 import Budget from './pages/Budgeting';
 import AddTransaction from './pages/AddTransaction';
 import EditTransaction from './pages/EditTransaction';
+import { ThemeProvider } from './context/theme';
 
 function App() {
   return (
     <>
-      <SidebarProvider>
-        <Toaster position="bottom-right" />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/analytics" element={<Analytics />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/budgeting" element={<Budget />} />
-            <Route path="/addTransaction" element={<AddTransaction />} />
-            <Route path="/editTransaction/:id" element={<EditTransaction />} />
-          </Routes>
-        </BrowserRouter>
-      </SidebarProvider>
+      <ThemeProvider>
+        <SidebarProvider>
+          <Toaster position="bottom-right" />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/analytics" element={<Analytics />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/budgeting" element={<Budget />} />
+              <Route path="/addTransaction" element={<AddTransaction />} />
+              <Route
+                path="/editTransaction/:id"
+                element={<EditTransaction />}
+              />
+            </Routes>
+          </BrowserRouter>
+        </SidebarProvider>
+      </ThemeProvider>
     </>
   );
 }

@@ -22,8 +22,10 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 import { AddCategory } from '@/components/AddBudgetCategory';
 import { EditCategory } from '@/components/EditBudgetCategory';
+import { useTheme } from '@/context/theme';
 
 function Budget() {
+  const { theme } = useTheme();
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const [actionType, setActionType] = useState<
     'edit' | 'delete' | 'post' | null
@@ -87,10 +89,10 @@ function Budget() {
   }
 
   return (
-    <div className="flex w-screen font-mono">
+    <div className={`flex w-screen font-mono ${theme}`}>
       <SideBar />
       <SidebarTrigger />
-      <div className="w-full p-4">
+      <div className="w-full p-4 bg-background text-primary">
         <div className="flex justify-end mb-8">
           <Button
             onClick={() => {

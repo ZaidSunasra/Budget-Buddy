@@ -11,8 +11,10 @@ import { baseURL } from '@/types';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
+import { useTheme } from '@/context/theme';
 
 function Dashboard() {
+  const { theme } = useTheme();
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState('');
 
@@ -31,10 +33,10 @@ function Dashboard() {
   }
 
   return (
-    <div className="flex w-screen font-mono">
+    <div className={`flex w-screen font-mono ${theme}`}>
       <SideBar />
       <SidebarTrigger />
-      <div className="p-4 w-full">
+      <div className="p-4 w-full bg-background text-primary">
         <div className="flex gap-5 mb-8">
           <Input
             placeholder="Search expenses"

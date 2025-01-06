@@ -9,8 +9,10 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { setUser } from '@/lib/userDetails';
+import { useTheme } from '@/context/theme';
 
 function Signup() {
+  const { theme } = useTheme();
   const navigate = useNavigate();
   const { fetchData, apiData, serverError, isLoading } = postData();
   const {
@@ -42,7 +44,9 @@ function Signup() {
   }, [apiData, serverError]);
 
   return (
-    <div className="font-mono w-screen h-screen flex justify-center items-center">
+    <div
+      className={`font-mono w-screen h-screen flex justify-center items-center text-primary bg-background ${theme}`}
+    >
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-1/3 p-8 border-primary border rounded-2xl bg-accent shadow-2xl"

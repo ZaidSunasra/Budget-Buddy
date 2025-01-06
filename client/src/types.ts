@@ -35,4 +35,9 @@ export type editCategory = {
   allocated_value: string;
 };
 
+export type ThemeContextType = {
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
+};
+
 export const baseURL = import.meta.env.VITE_BASE_API;
