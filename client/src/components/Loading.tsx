@@ -1,8 +1,12 @@
+import { useTheme } from '@/context/theme';
 import { Skeleton } from './ui/skeleton';
 
 export function Loading() {
+
+  const {theme} = useTheme();
+
   return (
-    <div className="w-screen h-screen">
+    <div className={`w-screen h-screen bg-background ${theme}`}>
       <div className=" flex">
         <div>
           <Skeleton className="h-screen w-64" />
