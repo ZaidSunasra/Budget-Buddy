@@ -5,15 +5,15 @@ import { router as mainRouter } from './routes/mainRouter';
 import env from 'dotenv';
 
 const app = express();
-app.use(express.json());
-app.use(cookieParser());
+env.config();
+
 app.use(cors({
     credentials: true,
     origin: "https://budget-buddy-one-rose.vercel.app"
 }));
 
-env.config();
-
+app.use(express.json());
+app.use(cookieParser());
 app.use("/api/v1", mainRouter);
 
 app.listen(process.env.PORT, () =>{
