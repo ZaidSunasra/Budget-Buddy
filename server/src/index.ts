@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
     credentials: true,
-    origin: "https://budget-buddy-one-rose.vercel.app"
+    origin: "https://budget-buddy-one-rose.vercel.app/"
 }));
 
 env.config();
