@@ -88,7 +88,7 @@ export function SideBar() {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton className="font-bold text-2xl">
-                <div className="aspect-square size-6 rounded-lg flex items-center justify-center">
+                <div className="aspect-square size-6 rounded-lg flex items-center justify-center bg-sidebar">
                   <img src="../icons/logo.svg" alt="Logo" className="w-6 h-6 rounded" />
                 </div>
                 <span>Budget Buddy</span>
