@@ -6,9 +6,9 @@ function Landing() {
 
   return (
     <div
-      className={`w-screen h-screen flex justify-center items-center font-mono bg-background gap-10 text-primary ${theme}`}
+      className={`w-screen h-screen flex flex-col justify-center items-center font-mono bg-background gap-20 text-primary p-4 lg:flex-row  ${theme}`}
     >
-      <div className="w-2/5">
+      <div className="w-full md:w-1/2 lg:w-2/5">
         <h1 className="font-extrabold text-5xl mb-4">Budget Buddy</h1>
         <p className="text-2xl">
           Track, analyze, and optimize your expenses with our powerful and

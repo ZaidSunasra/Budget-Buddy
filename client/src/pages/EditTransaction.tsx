@@ -73,10 +73,10 @@ function EditTransaction() {
   return getLoading ? (
     <FormLoading />
   ) : (
-    <div className="w-screen h-screen flex justify-center items-center font-mono">
+    <div className="w-screen h-screen flex justify-center items-center font-mono p-4">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-1/3 p-8 border-primary border rounded-2xl bg-accent shadow-2xl "
+        className="w-full  md:w-3/5 lg:w-1/3 p-8 border-primary border rounded-2xl bg-accent shadow-2xl "
       >
         <h3 className="text-center text-2xl mb-4 font-bold">
           {' '}

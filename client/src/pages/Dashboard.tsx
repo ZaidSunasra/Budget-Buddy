@@ -37,22 +37,22 @@ function Dashboard() {
       <SideBar />
       <SidebarTrigger />
       <div className="p-4 w-full bg-background text-primary">
-        <div className="flex gap-5 mb-8">
+        <div className="flex gap-5 mb-8 flex-col-reverse lg:flex-row">
           <Input
             placeholder="Search expenses"
-            className="w-4/5"
+            className="w-[95%]  md:w-[90%] lg:w-3/4"
             type="search"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
           <Button
-            className="w-1/5 text-secondary flex gap-5"
+            className="w-[95%] md:w-[90%] lg:w-1/4 text-secondary flex gap-5"
             onClick={() => navigate('/addTransaction')}
           >
             <Plus /> Add Transaction
           </Button>
         </div>
-        <div className="max-h-[85vh] overflow-y-auto border-2">
+        <div className="max-h-[85vh] overflow-y-auto border-2 w-[95%] md:w-[90%] lg:w-full">
           <TransactionTable
             data={debouncedSearchResults || apiData}
             message={

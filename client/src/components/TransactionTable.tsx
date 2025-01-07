@@ -63,39 +63,37 @@ export function TransactionTable({
 
   return (
     <div className="font-mono">
-      <Table>
+      <Table className='overflow-x-auto'>
         <TableHeader>
           <TableRow className="font-bold text-lg">
-            <TableHead>Date</TableHead>
-            <TableHead>Title</TableHead>
-            <TableHead>Category</TableHead>
+            <TableHead className='min-w-28'>Date</TableHead>
+            <TableHead className='min-w-56 max-w-64'>Title</TableHead>
+            <TableHead className='min-w-32'>Category</TableHead>
             <TableHead>Type</TableHead>
-            <TableHead>Amount</TableHead>
-            <TableHead>Action</TableHead>
+            <TableHead className='min-w-32'>Amount</TableHead>
+            <TableHead className='min-w-28'>Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {data &&
             data.expenses.map((expense: expenseInput) => (
               <TableRow key={expense.id} className="font-bold text-md">
-                <TableCell>{expense.transaction_time.slice(0, 10)}</TableCell>
-                <TableCell className="max-w-64 overflow-auto">
-                  {expense.title.charAt(0).toUpperCase()}
-                  {expense.title.slice(1)}
+                <TableCell >{expense.transaction_time.slice(0, 10)}</TableCell>
+                <TableCell className="capitalize">
+                  {expense.title}
                 </TableCell>
-                <TableCell>
-                  {expense.category.charAt(0).toUpperCase()}
-                  {expense.category.slice(1)}
+                <TableCell className='capitalize'>
+                  {expense.category}
                 </TableCell>
-                <TableCell>
-                  {expense.type.charAt(0).toUpperCase()}
-                  {expense.type.slice(1)}
+                <TableCell className='capitalize'>
+                  {expense.type}
                 </TableCell>
                 <TableCell
                   className={
                     expense.type == 'expense'
                       ? 'text-red-500'
                       : 'text-green-500'
+                      
                   }
                 >
                   {expense.amount}
@@ -124,7 +122,7 @@ export function TransactionTable({
         </TableBody>
       </Table>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-48">
           <DialogHeader>
             <DialogTitle>Delete Transaction</DialogTitle>
             <DialogDescription className="text-red-500">
