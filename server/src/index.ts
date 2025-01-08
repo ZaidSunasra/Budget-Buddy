@@ -7,12 +7,18 @@ import env from 'dotenv';
 const app = express();
 env.config();
 
-app.options("*", cors());
-
 app.use(cors({
-    credentials: true,
-    origin: "https://budget-buddy-one-rose.vercel.app"
+    origin: (origin, callback) => {
+        const allowedOrigin = "https://budget-buddy-one-rose.vercel.app";
+        if (origin === allowedOrigin || origin === `${allowedOrigin}/`) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true
 }));
+
 
 app.use(express.json());
 app.use(cookieParser());
