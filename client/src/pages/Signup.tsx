@@ -45,11 +45,11 @@ function Signup() {
 
   return (
     <div
-      className={`font-mono w-screen h-screen flex justify-center items-center text-primary bg-background ${theme}`}
+      className={`font-mono w-screen h-screen flex justify-center items-center text-primary bg-background p-4 ${theme}`}
     >
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-1/3 p-8 border-primary border rounded-2xl bg-accent shadow-2xl"
+        className="w-full  md:w-3/5 lg:w-1/3 p-8 border-primary border rounded-2xl bg-accent shadow-2xl"
       >
         <h3 className="text-center text-2xl mb-4 font-bold">Create Account</h3>
         <div className="mb-4">
