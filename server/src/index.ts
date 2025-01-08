@@ -9,7 +9,9 @@ env.config();
 
 app.use(cors({
     origin: "https://budget-buddy-one-rose.vercel.app",
-    credentials: true
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], 
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 
