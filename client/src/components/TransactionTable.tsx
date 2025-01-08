@@ -122,7 +122,7 @@ export function TransactionTable({
         </TableBody>
       </Table>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-48">
+        <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Delete Transaction</DialogTitle>
             <DialogDescription className="text-red-500">
