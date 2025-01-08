@@ -2,15 +2,18 @@ import { ErrorMessage } from '@/components/ErrorMessage';
 import { FormLoading } from '@/components/FormLoading';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useTheme } from '@/context/theme';
 import { getData, postData } from '@/hooks/useAPI';
 import { baseURL, expenseInput } from '@/types';
 import { Label } from '@radix-ui/react-label';
+import { ArrowLeft } from 'lucide-react';
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'sonner';
 
 function EditTransaction() {
+  const { theme } = useTheme();
   const navigate = useNavigate();
   const id = useParams();
   const {
@@ -73,7 +76,13 @@ function EditTransaction() {
   return getLoading ? (
     <FormLoading />
   ) : (
-    <div className="w-screen h-screen flex justify-center items-center font-mono p-4">
+    <div className={`w-screen h-screen flex flex-col justify-center items-center font-mono p-4 bg-background text-primary ${theme} `}>
+            <div className='w-full fixed top-0 p-4'>
+        <Button onClick={() => navigate("/dashboard")}>
+          <ArrowLeft />
+          Back to Dashboard
+        </Button>
+      </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full  md:w-3/5 lg:w-1/3 p-8 border-primary border rounded-2xl bg-accent shadow-2xl "
@@ -110,10 +119,10 @@ function EditTransaction() {
             <ErrorMessage message={errors.category.message} />
           )}
         </div>
-        <div className="mb-4">
+        <div className="mb-4 text-primary">
           <Label> Type</Label>
           <select
-            className="w-full px-3 py-2 h-9"
+            className="w-full px-3 py-2 h-9 bg-background"
             {...register('type', {
               required: { value: true, message: 'Category cannot be empty' },
             })}
