@@ -100,7 +100,7 @@ export const signinController = async (req: Request, res: Response): Promise<any
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000,
             secure: process.env.NODE_ENV === 'production',
-            sameSite:  'none',
+            sameSite: "none",
         });
 
         return res.status(200).send({
