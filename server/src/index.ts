@@ -7,10 +7,7 @@ import env from 'dotenv';
 const app = express();
 env.config();
 
-app.options("*", cors({
-    origin: "https://budget-buddy-one-rose.vercel.app",  
-    credentials: true,
-}));
+app.options("*", cors());
 
 app.use(cors({
     credentials: true,
