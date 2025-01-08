@@ -8,7 +8,7 @@ const app = express();
 env.config();
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://budget-buddy-one-rose.vercel.app",
     credentials: true,
 }));
 
