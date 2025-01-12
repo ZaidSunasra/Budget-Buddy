@@ -4,24 +4,30 @@ import { Input } from '@/components/ui/input';
 import { postData } from '@/hooks/useAPI';
 import { baseURL, signupInput } from '@/types';
 import { Label } from '@radix-ui/react-label';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { setUser } from '@/lib/userDetails';
 import { useTheme } from '@/context/theme';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { TailSpin } from 'react-loader-spinner';
 
 function Signup() {
+  const [showPassword, setShowPassword] = useState(false);
   const { theme } = useTheme();
   const navigate = useNavigate();
-  const { fetchData, apiData, serverError, isLoading } = postData();
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
   } = useForm<signupInput>();
+  const { fetchData, apiData, serverError, isLoading } = postData();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   const onSubmit: SubmitHandler<signupInput> = async (data) => {
     await fetchData({
       url: `${baseURL}/auth/signup`,
@@ -122,22 +128,33 @@ function Signup() {
           />
           {errors.email && <ErrorMessage message={errors.email.message} />}
         </div>
-        <div className="mb-4">
+        <div className="mb-4 relative">
           <Label>Password</Label>
           <Input
             {...register('password', {
               maxLength: {
                 value: 16,
-                message: 'Password should not exceed 16 letters',
+                message: 'Password should not exceed 16 characters',
               },
               minLength: {
                 value: 6,
-                message: 'Password should not be less than 6 words',
+                message: 'Password should not be less than 6 characters',
               },
               required: { value: true, message: 'Password cannot be empty' },
             })}
-            type="password"
+            type={showPassword ? 'text' : 'password'}
+            className="w-full p-2 border rounded-md"
           />
+          <span
+            className="absolute top-8 right-3 flex cursor-pointer"
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? (
+              <EyeOff className="w-5 h-5" />
+            ) : (
+              <Eye className="w-5 h-5" />
+            )}
+          </span>
           {errors.password && (
             <ErrorMessage message={errors.password.message} />
           )}

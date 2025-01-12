@@ -4,15 +4,17 @@ import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { postData } from '@/hooks/useAPI';
 import { toast } from 'sonner';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { baseURL, loginInput } from '@/types';
 import { ErrorMessage } from './ErrorMessage';
 import { setUser } from '@/lib/userDetails';
 import { TailSpin } from 'react-loader-spinner';
 import { useTheme } from '@/context/theme';
+import { Eye, EyeOff } from 'lucide-react';
 
 export function Login() {
+  const [showPassword, setShowPassword] = useState(false);
   const { theme } = useTheme();
   const navigate = useNavigate();
   const {
@@ -21,6 +23,11 @@ export function Login() {
     formState: { errors, isSubmitting },
   } = useForm<loginInput>();
   const { fetchData, apiData, serverError, isLoading } = postData();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   const onSubmit: SubmitHandler<loginInput> = async (data) => {
     await fetchData({
       url: `${baseURL}/auth/signin`,
@@ -81,14 +88,24 @@ export function Login() {
           />
           {errors.email && <ErrorMessage message={errors.email.message} />}
         </div>
-        <div className="mb-6">
+        <div className="mb-6 relative">
           <Label>Password</Label>
           <Input
             {...register('password', {
               required: { value: true, message: 'Password cannot be empty.' },
             })}
-            type="password"
+            type={showPassword ? 'text' : 'password'}
           />
+          <span
+            className="absolute top-8 right-3 flex cursor-pointer"
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? (
+              <EyeOff className="w-5 h-5" />
+            ) : (
+              <Eye className="w-5 h-5" />
+            )}
+          </span>
           {errors.password && (
             <ErrorMessage message={errors.password.message} />
           )}
