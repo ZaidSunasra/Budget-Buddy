@@ -95,7 +95,7 @@ function Budget() {
       <div className="w-full p-4 bg-background text-primary">
         <div className="flex justify-end mb-8">
           <Button
-          className='w-full'
+            className="w-full"
             onClick={() => {
               setIsDialogOpen(true);
               setActionType('post');
@@ -108,11 +108,11 @@ function Budget() {
         <Table className="border-2">
           <TableHeader>
             <TableRow className="font-bold text-lg">
-              <TableHead className='min-w-32'> Category </TableHead>
-              <TableHead className='min-w-28'> Allocated Budget</TableHead>
-              <TableHead className='min-w-28'> Budget Used</TableHead>
-              <TableHead className='min-w-28'> Remaining </TableHead>
-              <TableHead className='min-w-28'> Action</TableHead>
+              <TableHead className="min-w-32"> Category </TableHead>
+              <TableHead className="min-w-28"> Allocated Budget</TableHead>
+              <TableHead className="min-w-28"> Budget Used</TableHead>
+              <TableHead className="min-w-28"> Remaining </TableHead>
+              <TableHead className="min-w-28"> Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

@@ -47,9 +47,11 @@ function AddTransaction() {
   }, [apiData, serverError]);
 
   return (
-    <div className={`w-screen h-screen flex flex-col justify-center items-center font-mono p-4 bg-background text-primary ${theme} `}>
-      <div className='w-full fixed top-0 p-4'>
-        <Button onClick={() => navigate("/dashboard")}>
+    <div
+      className={`w-screen h-screen flex flex-col justify-center items-center font-mono p-4 bg-background text-primary ${theme} `}
+    >
+      <div className="w-full fixed top-0 p-4">
+        <Button onClick={() => navigate('/dashboard')}>
           <ArrowLeft />
           Back to Dashboard
         </Button>

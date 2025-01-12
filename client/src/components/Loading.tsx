@@ -2,8 +2,7 @@ import { useTheme } from '@/context/theme';
 import { Skeleton } from './ui/skeleton';
 
 export function Loading() {
-
-  const {theme} = useTheme();
+  const { theme } = useTheme();
 
   return (
     <div className={`w-screen h-screen bg-background ${theme}`}>
