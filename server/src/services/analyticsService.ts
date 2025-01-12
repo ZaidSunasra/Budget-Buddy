@@ -1,7 +1,8 @@
-import { db } from "../db/db"
+import { db } from "../db/db";
 
 export const sortByCategory = async (id: string): Promise<any> => {
-    const query = await db.query(`
+  const query = await db.query(
+    `
         SELECT 
             category, 
             SUM(amount) AS total_amount
@@ -13,14 +14,15 @@ export const sortByCategory = async (id: string): Promise<any> => {
             AND EXTRACT(YEAR FROM transaction_time) = EXTRACT(YEAR FROM CURRENT_DATE)
             AND type = 'expense'
         GROUP BY 
-            category;`, 
-        [id]
-    );
-    return query.rows;
-}
+            category;`,
+    [id],
+  );
+  return query.rows;
+};
 
 export const monthlyData = async (id: string): Promise<any> => {
-    const query = await db.query(`
+  const query = await db.query(
+    `
         WITH date_series AS (
             SELECT 
                 generate_series(
@@ -43,13 +45,14 @@ export const monthlyData = async (id: string): Promise<any> => {
             ds.transaction_date
         ORDER BY 
             ds.transaction_date;`,
-        [id]
-    );
-    return query.rows;
-}
+    [id],
+  );
+  return query.rows;
+};
 
-export const yearlyData = async(id: string) : Promise<any> => {
-    const query = await db.query(`
+export const yearlyData = async (id: string): Promise<any> => {
+  const query = await db.query(
+    `
         WITH months AS (
             SELECT 
                 generate_series(
@@ -71,14 +74,15 @@ export const yearlyData = async(id: string) : Promise<any> => {
         GROUP BY 
             m.month_start
         ORDER BY 
-            m.month_start;`,    
-        [id]
-    );
-    return query.rows;
-}
+            m.month_start;`,
+    [id],
+  );
+  return query.rows;
+};
 
-export const currrentMonth = async(id: string) : Promise<any> => {
-    const query = await db.query(`
+export const currrentMonth = async (id: string): Promise<any> => {
+  const query = await db.query(
+    `
         SELECT
             SUM(CASE WHEN type = 'expense' THEN amount ELSE 0 END) AS total_expense,
             SUM(CASE WHEN type = 'income' THEN amount ELSE 0 END) AS total_income
@@ -88,9 +92,7 @@ export const currrentMonth = async(id: string) : Promise<any> => {
             EXTRACT(MONTH FROM transaction_time) = EXTRACT(MONTH FROM CURRENT_DATE)
             AND EXTRACT(YEAR FROM transaction_time) = EXTRACT(YEAR FROM CURRENT_DATE)
             AND user_id = $1; `,
-        [id]
-    );
-    return query.rows;
-}
-
-
+    [id],
+  );
+  return query.rows;
+};

@@ -1,8 +1,8 @@
-import express from 'express';
-import { authRouter } from './authRouter';
-import { expenseRouter } from './expenseRouter';
-import { analyticsRouter } from './analyticsRouter';
-import { budgetRouter } from './budgetRouter';
+import express from "express";
+import { authRouter } from "./authRouter";
+import { expenseRouter } from "./expenseRouter";
+import { analyticsRouter } from "./analyticsRouter";
+import { budgetRouter } from "./budgetRouter";
 
 export const router = express.Router();
 

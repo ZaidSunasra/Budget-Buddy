@@ -1,6 +1,11 @@
-import express from 'express';
-import { authMiddleware } from '../middlewares/authMiddleware';
-import { addBudgetController, deleteBudgetController, editBudgetController, getBudgetController } from '../controllers/budgetController';
+import express from "express";
+import { authMiddleware } from "../middlewares/authMiddleware";
+import {
+  addBudgetController,
+  deleteBudgetController,
+  editBudgetController,
+  getBudgetController,
+} from "../controllers/budgetController";
 
 export const budgetRouter = express.Router();
 

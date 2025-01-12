@@ -24,25 +24,32 @@ An expense tracker app which helps user to track and manage their expenses and i
 Fork the Repository: Click on the Fork button at the top-right corner of this repository to create a copy in your GitHub account.
 
 Clone the repository:
+
 ```
 git clone https://github.com/ZaidSunasra/Budget-Buddy.git
 ```
 
 Navigate to the project directory
+
 ```
 Explained below
 ```
+
 Create a new branch to work on:
+
 ```
 git checkout -b feature/your-feature-name
-``` 
+```
+
 Make Changes
+
 ```
 git add .
 git commit -m "Add: Description of changes"
 ```
 
 Push Changes to your forked repository:
+
 ```
 git push origin feature/your-feature-name
 ```
@@ -54,37 +61,47 @@ Open a Pull Request: Go to the original repository and click on Pull Request. Fi
 ```
 cd server
 ```
+
 ```
 npm install
 ```
+
 Create a .env file
 Add following variables and replace the value with your
+
 ```
 DATABASE_URL=YOUR DATABASE URL / POSTGRE PASSWORD
 JWT_SECRET=YOUR JWT SECRET
 PORT=3000
 ```
+
 ```
 tsc --watch
 ```
+
 Open a new terminal
+
 ```
 cd server
 ```
+
 ```
 nodemon dist/index.js
 ```
+
 Open a new terminal
+
 ```
 cd client
 ```
+
 ```
 npm install
 ```
+
 ```
 npm run dev
 ```
-
 
 ## TECH STACK
 
