@@ -9,7 +9,7 @@ import { useTheme } from '@/context/theme';
 function Analytics() {
   const { theme } = useTheme();
   return (
-    <div className={`flex w-screen ${theme}`}>
+    <div className={`flex w-screen font-mono ${theme}`}>
       <SideBar />
       <SidebarTrigger />
       <div className="w-full p-4 bg-background text-primary">
