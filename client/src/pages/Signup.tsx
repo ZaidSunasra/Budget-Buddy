@@ -11,6 +11,7 @@ import { toast } from 'sonner';
 import { setUser } from '@/lib/userDetails';
 import { useTheme } from '@/context/theme';
 import { ArrowLeft } from 'lucide-react';
+import { TailSpin } from 'react-loader-spinner';
 
 function Signup() {
   const { theme } = useTheme();
@@ -48,16 +49,34 @@ function Signup() {
     <div
       className={`font-mono w-screen h-screen flex justify-center items-center text-primary bg-background p-4 ${theme}`}
     >
-      <div className='w-full fixed top-0 p-4'>
-        <Button onClick={() => navigate("/")}>
+      <div className="w-full fixed top-0 p-4">
+        <Button onClick={() => navigate('/')} disabled={isLoading}>
           <ArrowLeft />
-          Back 
+          Back
         </Button>
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full  md:w-3/5 lg:w-1/3 p-8 border-primary border rounded-2xl bg-accent shadow-2xl"
       >
+        {isLoading && (
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center z-10">
+            <TailSpin
+              visible={true}
+              height="80"
+              width="80"
+              color={
+                theme === 'dark'
+                  ? 'hsl(212.7 26.8% 83.9%)'
+                  : 'hsl(222.2 84% 4.9%)'
+              }
+              ariaLabel="tail-spin-loading"
+              radius="1"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
+          </div>
+        )}
         <h3 className="text-center text-2xl mb-4 font-bold">Create Account</h3>
         <div className="mb-4">
           <Label> First Name</Label>

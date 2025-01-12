@@ -9,8 +9,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { baseURL, loginInput } from '@/types';
 import { ErrorMessage } from './ErrorMessage';
 import { setUser } from '@/lib/userDetails';
+import { TailSpin } from 'react-loader-spinner';
+import { useTheme } from '@/context/theme';
 
 export function Login() {
+  const { theme } = useTheme();
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -46,6 +49,24 @@ export function Login() {
         className="p-8 border-primary border rounded-2xl bg-accent shadow-2xl"
         onSubmit={handleSubmit(onSubmit)}
       >
+        {isLoading && (
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center z-10">
+            <TailSpin
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="tail-spin-loading"
+              radius="1"
+              color={
+                theme === 'dark'
+                  ? 'hsl(212.7 26.8% 83.9%)'
+                  : 'hsl(222.2 84% 4.9%)'
+              }
+              wrapperClass=""
+              wrapperStyle={{}}
+            />
+          </div>
+        )}
         <h3 className="text-center text-2xl mb-4 font-bold">
           Login to your account
         </h3>
