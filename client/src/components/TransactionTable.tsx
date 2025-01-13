@@ -62,16 +62,16 @@ export function TransactionTable({
   }
 
   return (
-    <div className="font-mono">
-      <Table className="overflow-x-auto">
+    <>
+      <Table className="table-fixed">
         <TableHeader>
           <TableRow className="font-bold text-lg">
-            <TableHead className="min-w-28">Date</TableHead>
-            <TableHead className="min-w-56 max-w-64">Title</TableHead>
-            <TableHead className="min-w-32">Category</TableHead>
-            <TableHead>Type</TableHead>
-            <TableHead className="min-w-32">Amount</TableHead>
-            <TableHead className="min-w-28">Action</TableHead>
+            <TableHead className="w-28">Date</TableHead>
+            <TableHead className="w-56">Title</TableHead>
+            <TableHead className="w-32">Category</TableHead>
+            <TableHead className='w-24'>Type</TableHead>
+            <TableHead className="w-28">Amount</TableHead>
+            <TableHead className="w-32">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -93,14 +93,14 @@ export function TransactionTable({
                 </TableCell>
                 <TableCell className="flex gap-5">
                   <Button
-                    className="bg-secondary text-green-500"
+                    className="bg-secondary text-green-500 h-10 w-10 p-0"
                     onClick={() => navigate(`/editTransaction/${expense.id}`)}
                   >
                     {' '}
                     <Pencil />{' '}
                   </Button>
                   <Button
-                    className="bg-secondary text-red-500"
+                    className="bg-secondary text-red-500 h-10 w-10 p-0"
                     onClick={() => {
                       setIsOpen(true);
                       setSelectedId(expense.id);
@@ -136,6 +136,6 @@ export function TransactionTable({
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </div>
+    </>
   );
 }

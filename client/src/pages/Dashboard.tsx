@@ -33,26 +33,26 @@ function Dashboard() {
   }
 
   return (
-    <div className={`flex w-screen font-mono ${theme}`}>
+    <div className={`flex w-screen font-mono ${theme} `}>
       <SideBar />
       <SidebarTrigger />
-      <div className="p-4 w-full bg-background text-primary">
+      <div className="w-full p-4 bg-background text-primary max-w-full overflow-auto">
         <div className="flex gap-5 mb-8 flex-col-reverse lg:flex-row">
           <Input
             placeholder="Search expenses"
-            className="w-[95%]  md:w-[90%] lg:w-3/4"
+            className="lg:w-3/4"
             type="search"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
           <Button
-            className="w-[95%] md:w-[90%] lg:w-1/4 text-secondary flex gap-5"
+            className="lg:w-1/4 text-secondary flex gap-5"
             onClick={() => navigate('/addTransaction')}
           >
             <Plus /> Add Transaction
           </Button>
         </div>
-        <div className="max-h-[85vh] overflow-y-auto border-2 w-[95%] md:w-[90%] lg:w-full">
+        <div className="max-h-[85vh] overflow-y-auto border-2 border-gray-200 rounded-lg">
           <TransactionTable
             data={debouncedSearchResults || apiData}
             message={

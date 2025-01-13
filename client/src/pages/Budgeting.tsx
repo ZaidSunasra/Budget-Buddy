@@ -92,7 +92,7 @@ function Budget() {
     <div className={`flex w-screen font-mono ${theme}`}>
       <SideBar />
       <SidebarTrigger />
-      <div className="w-full p-4 bg-background text-primary">
+      <div className="w-full p-4 bg-background text-primary max-w-full overflow-auto">
         <div className="flex justify-end mb-8">
           <Button
             className="w-full"
@@ -105,14 +105,15 @@ function Budget() {
             Add Category
           </Button>
         </div>
-        <Table className="border-2">
+        <div  className="border-2 border-gray-200 rounded-lg">
+        <Table className='table-fixed'>
           <TableHeader>
             <TableRow className="font-bold text-lg">
-              <TableHead className="min-w-32"> Category </TableHead>
-              <TableHead className="min-w-28"> Allocated Budget</TableHead>
-              <TableHead className="min-w-28"> Budget Used</TableHead>
-              <TableHead className="min-w-28"> Remaining </TableHead>
-              <TableHead className="min-w-28"> Action</TableHead>
+              <TableHead className="w-32"> Category </TableHead>
+              <TableHead className="w-28"> Allocated Budget</TableHead>
+              <TableHead className="w-28"> Budget Used</TableHead>
+              <TableHead className="w-28"> Remaining </TableHead>
+              <TableHead className="w-32"> Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -145,7 +146,7 @@ function Budget() {
                           setIsDialogOpen(true);
                           setData(data);
                         }}
-                        className="bg-secondary text-green-500"
+                        className="bg-secondary text-green-500 h-10 w-10 p-0"
                       >
                         {' '}
                         <Pencil />{' '}
@@ -156,7 +157,7 @@ function Budget() {
                           setIsDialogOpen(true);
                           setData(data);
                         }}
-                        className="bg-secondary text-red-500"
+                        className="bg-secondary text-red-500 h-10 w-10 p-0"
                       >
                         {' '}
                         <Trash2 />{' '}
@@ -167,7 +168,7 @@ function Budget() {
               })}
           </TableBody>
         </Table>
-
+        </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogContent className="sm:max-w-md">
             {actionType == 'post' ? (
