@@ -15,7 +15,7 @@ function Settings() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className={`flex w-screen ${theme}`}>
+    <div className={`flex w-screen font-mono ${theme}`}>
       <SideBar />
       <SidebarTrigger />
       <div className="p-4 w-full bg-background text-primary">
